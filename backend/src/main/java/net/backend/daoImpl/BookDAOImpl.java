@@ -89,7 +89,7 @@ public class BookDAOImpl implements BookDAO {
 	@Override
 	public List<Book> getLatestActiveBooks(int count) {
 		return sessionFactory.getCurrentSession()
-				.createQuery("FROM Book WHERE active = :active ORDER BY id", Book.class).setParameter("active", true)
+				.createQuery("FROM Book WHERE active = :active ORDER BY rating DESC, purchases", Book.class).setParameter("active", true)
 				.setFirstResult(0).setMaxResults(count).getResultList();
 	}
 

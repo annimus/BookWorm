@@ -115,7 +115,7 @@
 							<h4>
 								<a href="${contextRoot}/show/${bestSellerItem.id}/book">${bestSellerItem.name}</a>
 							</h4>
-							<h4>$24.99</h4>
+							<h4>&#36;${bestSellerItem.unitPrice}</h4>
 							<p>By: ${bestSellerItem.author}</p>
 							<p>Publisher: ${bestSellerItem.publisher}</p>
 						</div>
