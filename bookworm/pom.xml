@@ -8,6 +8,14 @@
 	<name>bookworm Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
+		<!-- Spring Web MVC -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>4.3.6.RELEASE</version>
+		</dependency>
+
 		<!-- Java EE API -->
 		<dependency>
 			<groupId>javax</groupId>
