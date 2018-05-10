@@ -24,5 +24,6 @@ hs_err_pid*
 
 /bookworm/target/
 /backend/target/
+/Servers/
 /.metadata
 .recommenders/*
