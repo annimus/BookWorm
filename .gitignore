@@ -28,3 +28,5 @@ hs_err_pid*
 /.metadata
 .recommenders/*
 RemoteSystemsTempFiles/
+backend/.classpath
+bookworm/.classpath
