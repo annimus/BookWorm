@@ -21,8 +21,15 @@
 
 <title>BookWorm - ${title}</title>
 
+<script>
+	window.menu = '${title}';
+</script>
+
 <!-- Bootstrap Core CSS -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Sketchy Theme CSS -->
+<link href="${css}/bootstrap-cerulean-theme.css" rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="${css}/myapp.css" rel="stylesheet">
@@ -37,38 +44,43 @@
 </head>
 
 <body>
+	<div class="wrapper">
 
-	<!-- Navigation -->
-	<%@include file="./shared/navbar.jsp"%>
+		<!-- Navigation -->
+		<%@include file="./shared/navbar.jsp"%>
 
-	<!-- Page Content -->
+		<!-- Page Content -->
+		<div class="content">
+		
+			<!-- Home -->
+			<c:if test="${userClickHome == true }">
+				<%@include file="home.jsp"%>
+			</c:if>
 
-	<!-- Home -->
-	<c:if test="${userClickHome == true }">
-		<%@include file="home.jsp"%>
-	</c:if>
-	
-	<!-- About Us -->
-	<c:if test="${userClickAbout == true }">
-		<%@include file="about.jsp"%>
-	</c:if>
-	
-	<!-- Contact Us -->
-	<c:if test="${userClickContact == true }">
-		<%@include file="contact.jsp"%>
-	</c:if>
-	
-	<!-- /Page Content -->
+			<!-- About Us -->
+			<c:if test="${userClickAbout == true }">
+				<%@include file="about.jsp"%>
+			</c:if>
 
-	<!-- Footer -->
-	<%@include file="./shared/footer.jsp"%>
+			<!-- Contact Us -->
+			<c:if test="${userClickContact == true }">
+				<%@include file="contact.jsp"%>
+			</c:if>
 
-	<!-- jQuery -->
-	<script src="${js}/jquery.js"></script>
+		</div>
+		<!-- /Page Content -->
 
-	<!-- Bootstrap Core JavaScript -->
-	<script src="${js}/bootstrap.min.js"></script>
+		<!-- Footer -->
+		<%@include file="./shared/footer.jsp"%>
 
+		<!-- jQuery -->
+		<script src="${js}/jquery.js"></script>
+
+		<!-- Bootstrap Core JavaScript -->
+		<script src="${js}/bootstrap.min.js"></script>
+		<script src="${js}/myapp.js"></script>
+
+	</div>
 </body>
 
 </html>
