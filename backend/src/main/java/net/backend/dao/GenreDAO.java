@@ -7,4 +7,5 @@ import net.backend.dto.Genre;
 public interface GenreDAO {
 
 	List<Genre> list();
+	Genre get(int id);
 }

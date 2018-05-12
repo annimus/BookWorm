@@ -48,4 +48,15 @@ public class GenreDAOImpl implements GenreDAO {
 		return genres;
 	}
 
+	@Override
+	public Genre get(int id) {
+
+		for (Genre genre : genres) {
+			if (genre.getId() == id) {
+				return genre;
+			}
+		}
+		return null;
+	}
+
 }
