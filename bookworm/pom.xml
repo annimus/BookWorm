@@ -8,13 +8,21 @@
 	<name>bookworm Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
+		<!-- Backend -->
+		<dependency>
+			<groupId>net</groupId>
+			<artifactId>backend</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+
 		<!-- JSTL -->
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-	
+
 		<!-- Spring Web MVC -->
 		<dependency>
 			<groupId>org.springframework</groupId>
