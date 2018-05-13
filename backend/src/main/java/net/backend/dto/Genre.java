@@ -1,11 +1,29 @@
 package net.backend.dto;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Genre {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
+
+	@Column(name = "name")
 	private String name;
+
+	@Column(name = "description")
 	private String description;
+
+	@Column(name = "image_url")
 	private String imageURL;
+
+	@Column(name = "is_active")
 	private boolean active;
 
 	// Getters and Setters
@@ -47,6 +65,12 @@ public class Genre {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	@Override
+	public String toString() {
+		return "Genre [id=" + id + ", name=" + name + ", description=" + description + ", imageURL=" + imageURL
+				+ ", active=" + active + "]";
 	}
 
 }
