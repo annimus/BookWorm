@@ -55,6 +55,6 @@ public class GenreTestCase {
 		genre = genreDAO.get(2);
 		Assert.assertEquals("Something went wrong while deleting the genre", true, genreDAO.delete(genre));
 		
-		Assert.assertEquals("Something went wrong while listing the active genres", 1, genreDAO.list().size());
+		Assert.assertEquals("Something went wrong while listing the active genres", 4, genreDAO.list().size());
 	}
 }

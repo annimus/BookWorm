@@ -14,6 +14,10 @@
 
 					<!-- All Books -->
 					<c:if test="${userClickAllBooks == true}">
+						<script>
+							window.genreId = '';
+						</script>
+
 						<ol class="breadcrumb">
 
 							<li><a href="${contextRoot}/home">Home</a></li>
@@ -25,6 +29,9 @@
 
 					<!-- Books by genre -->
 					<c:if test="${userClickGenreBooks == true}">
+						<script>
+							window.genreId = '${genre.id}';
+						</script>
 						<ol class="breadcrumb">
 
 							<li><a href="${contextRoot}/home">Home</a></li>
@@ -34,6 +41,33 @@
 
 						</ol>
 					</c:if>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12">
+					<table id="bookListTable" class="table table-striped table-borderd">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Name</th>
+								<th>Author</th>
+								<th>Price</th>
+								<th>Quantity Available</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<th></th>
+								<th>Name</th>
+								<th>Author</th>
+								<th>Price</th>
+								<th>Quantity Available</th>
+								<th></th>
+							</tr>
+						</tfoot>
+					</table>
 				</div>
 			</div>
 		</div>

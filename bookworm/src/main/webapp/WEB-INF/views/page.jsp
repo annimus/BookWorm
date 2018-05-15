@@ -23,6 +23,7 @@
 
 <script>
 	window.menu = '${title}';
+	window.contextRoot = '${contextRoot}';
 </script>
 
 <!-- Bootstrap Core CSS -->
@@ -30,6 +31,9 @@
 
 <!-- Bootstrap Sketchy Theme CSS -->
 <link href="${css}/bootstrap-cerulean-theme.css" rel="stylesheet">
+
+<!-- DataTables Bootstrap CSS -->
+<link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="${css}/myapp.css" rel="stylesheet">
@@ -78,11 +82,19 @@
 		<!-- Footer -->
 		<%@include file="./shared/footer.jsp"%>
 
-		<!-- jQuery -->
+		<!-- JQuery -->
 		<script src="${js}/jquery.js"></script>
 
 		<!-- Bootstrap Core JavaScript -->
 		<script src="${js}/bootstrap.min.js"></script>
+		
+		<!-- DataTables Plugin JQuery -->
+		<script src="${js}/jquery.dataTables.js"></script>
+		
+		<!-- DataTables Bootstrap JavaScript -->
+		<script src="${js}/dataTables.bootstrap.js"></script>
+		
+		<!-- SelfCoded JavaScript -->
 		<script src="${js}/myapp.js"></script>
 
 	</div>
