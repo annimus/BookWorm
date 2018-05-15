@@ -53,7 +53,7 @@
 								<th>Name</th>
 								<th>Author</th>
 								<th>Price</th>
-								<th>Quantity Available</th>
+								<th>Available</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -63,7 +63,7 @@
 								<th>Name</th>
 								<th>Author</th>
 								<th>Price</th>
-								<th>Quantity Available</th>
+								<th>Available</th>
 								<th></th>
 							</tr>
 						</tfoot>

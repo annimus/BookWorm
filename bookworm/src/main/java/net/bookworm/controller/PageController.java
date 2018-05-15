@@ -1,23 +1,36 @@
 package net.bookworm.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.backend.dao.BookDAO;
 import net.backend.dao.GenreDAO;
+import net.backend.dto.Book;
 import net.backend.dto.Genre;
+import net.bookworm.exception.BookNotFoundException;
 
 @Controller
 public class PageController {
 
+	private static final Logger logger = LoggerFactory.getLogger(PageController.class);
+	
 	@Autowired
 	private GenreDAO genreDAO;
+
+	@Autowired
+	private BookDAO bookDAO;
 
 	// Home
 	@RequestMapping(value = { "/", "/home", "/index" })
 	public ModelAndView index() {
+		logger.info("Inside PageController index method - INFO");
+		logger.debug("Inside PageController index method - DEBUG");
+		
 		ModelAndView mv = new ModelAndView("page");
 
 		mv.addObject("title", "Home");
@@ -66,11 +79,33 @@ public class PageController {
 	public ModelAndView showGenreBooks(@PathVariable("id") int id) {
 		ModelAndView mv = new ModelAndView("page");
 		Genre genre = genreDAO.get(id);
-		
+
 		mv.addObject("title", genre.getName());
 		mv.addObject("userClickGenreBooks", true);
 		mv.addObject("genres", genreDAO.list());
 		mv.addObject("genre", genre);
+
+		return mv;
+	}
+
+	// Show a single book
+	@RequestMapping(value = "/show/{id}/book")
+	public ModelAndView showSingleBook(@PathVariable int id) throws BookNotFoundException {
+		ModelAndView mv = new ModelAndView("page");
+
+		Book book = bookDAO.get(id);
+		
+		if (book == null) {
+			throw new BookNotFoundException();
+		}
+
+		// Update view count
+		book.setViews(book.getViews() + 1);
+		bookDAO.update(book);
+		
+		mv.addObject("title", book.getName());
+		mv.addObject("book", book);
+		mv.addObject("userClickShowBook", true);
 
 		return mv;
 	}

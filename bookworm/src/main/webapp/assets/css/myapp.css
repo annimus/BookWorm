@@ -77,3 +77,7 @@ footer {
 	width: 100px;
 	height: 150px;
 }
+
+.strikethrough {
+	text-decoration: line-through;
+}

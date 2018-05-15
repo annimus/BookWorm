@@ -71,9 +71,14 @@
 				<%@include file="contact.jsp"%>
 			</c:if>
 			
-			<!-- Books -->
+			<!-- Show All Books -->
 			<c:if test="${userClickAllBooks == true or userClickGenreBooks == true}">
 				<%@include file="listBooks.jsp"%>
+			</c:if>
+			
+			<!-- Show Single Book -->
+			<c:if test="${userClickShowBook == true}">
+				<%@include file="singleBook.jsp"%>
 			</c:if>
 
 		</div>

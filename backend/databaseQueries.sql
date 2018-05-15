@@ -72,4 +72,4 @@ INSERT INTO book (code, name, publisher, author, description, unit_price, quanti
 INSERT INTO book (code, name, publisher, author, description, unit_price, quantity, is_active, 
 	genre_id, supplier_id, purchases, views, isbn)
 	VALUES ('PAZASDASDFAZXX14', 'Iron and Magic', 'NYLA', 'Ilona Andrews', 'Iron and Magic is first book in the Iron Covenant Series',
-		6.89, 1000, true, 3, 2, 0, 0, 0107897448);
+		6.89, 0, true, 3, 2, 0, 0, 0107897448);
