@@ -24,45 +24,6 @@ public class GenreTestCase {
 
 	}
 	
-	/*@Test
-	public void testAddGenre() {
-		genre = new Genre();
-		
-		genre.setName("Fantasy");
-		genre.setDescription("This is a fantasy genre.");
-		genre.setImageURL("CAT_1.png");
-		genre.setActive(true);
-		
-		Assert.assertEquals("Successfully added genre.", true, genreDAO.add(genre));
-	}*/
-	
-	/*@Test
-	public void testGetGenre() {
-		genre = genreDAO.get(1);
-		
-		Assert.assertEquals("Successfully fetched the genre", "Romance", genre.getName());
-	}*/
-	
-	/*@Test
-	public void testUpdateGenre() {
-		genre = genreDAO.get(1);
-		
-		genre.setName("Drama & Romance");
-		
-		Assert.assertEquals("Successfully updated the genre", true, genreDAO.update(genre));
-	}*/
-	
-	/*@Test
-	public void testDeleteGenre() {
-		genre = genreDAO.get(2);
-		Assert.assertEquals("Successfully deleted the genre", true, genreDAO.delete(genre));
-	}*/
-	
-	/*@Test
-	public void testListGenre() {
-		Assert.assertEquals("Successfully listed the active genres", 2, genreDAO.list().size());
-	}*/
-	
 	@Test
 	public void testCRUD() {
 		genre = new Genre();
@@ -71,7 +32,7 @@ public class GenreTestCase {
 		genre.setImageURL("CAT_1.png");
 		genre.setActive(true);
 		
-		Assert.assertEquals("Successfully added genre.", true, genreDAO.add(genre));
+		Assert.assertEquals("Something went wrong while adding the genre.", true, genreDAO.add(genre));
 		
 		genre = new Genre();
 		genre.setName("Adventure");
@@ -79,21 +40,21 @@ public class GenreTestCase {
 		genre.setImageURL("CAT_2.png");
 		genre.setActive(true);
 		
-		Assert.assertEquals("Successfully added genre.", true, genreDAO.add(genre));
+		Assert.assertEquals("Something went wrong while adding genre.", true, genreDAO.add(genre));
 		
 		genre = genreDAO.get(1);
 		
-		Assert.assertEquals("Successfully fetched the genre", "Fantasy", genre.getName());
+		Assert.assertEquals("Something went wrong while fetching the genre", "Mythology", genre.getName());
 		
 		genre = genreDAO.get(2);
 		
 		genre.setName("Action & Adventure");
 		
-		Assert.assertEquals("Successfully updated the genre", true, genreDAO.update(genre));
+		Assert.assertEquals("Something went wrong while updating the genre", true, genreDAO.update(genre));
 		
 		genre = genreDAO.get(2);
-		Assert.assertEquals("Successfully deleted the genre", true, genreDAO.delete(genre));
+		Assert.assertEquals("Something went wrong while deleting the genre", true, genreDAO.delete(genre));
 		
-		Assert.assertEquals("Successfully listed the active genres", 1, genreDAO.list().size());
+		Assert.assertEquals("Something went wrong while listing the active genres", 1, genreDAO.list().size());
 	}
 }
