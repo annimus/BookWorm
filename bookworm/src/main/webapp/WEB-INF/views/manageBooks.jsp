@@ -105,22 +105,30 @@
 						</div>
 
 						<div class="form-group">
-							<label class="control-label col-md-4" for="genreId">Select
-								the Genre:</label>
-
-							<div class="col-md-8">
-								<sf:select class="form-control" id="genreId" path="genreId"
-									items="${genres}" itemLabel="name" itemValue="id" />
-							</div>
-						</div>
-
-						<div class="form-group">
 							<label class="control-label col-md-4" for="file">Select
 								an Image</label>
 
 							<div class="col-md-8">
 								<sf:input type="file" path="file" id="file" class="form-control" />
 								<sf:errors path="file" cssClass="help-block" element="em" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-4" for="genreId">Select
+								the Genre:</label>
+
+							<div class="col-md-8">
+								<sf:select class="form-control" id="genreId" path="genreId"
+									items="${genres}" itemLabel="name" itemValue="id" />
+									
+								<c:if test="${book.id == 0}">
+									<div class="text-right">
+										 <br/>
+										 <button type="button" data-toggle="modal" data-target="#myGenreModal" 
+										 	class="btn btn-warning btn-xs">Add Genre</button>
+									 </div>
+								</c:if>
 							</div>
 						</div>
 
@@ -187,4 +195,48 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="modal fade" id="myGenreModal" role="dialog" tabindex="-1">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+					
+					<h4 class="modal-title">Add New Genre</h4>
+				</div>
+				
+				<!-- Modal Body -->
+				<div class="modal-body">
+					<!-- Genre Form -->
+					<sf:form modelAttribute="genre" action="${contextRoot}/manage/genre" 
+						method="POST" class="form-horizontal">
+					
+						<div class="form-group">
+							<label for="genre_name" class="control-label col-md-4">Name:</label>
+							<div class="col-md-8">
+								<sf:input type="text" path="name" id="genre_name" class="form-control" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="genre_description" class="control-label col-md-4">Description:</label>
+							<div class="col-md-8">
+								<sf:textarea rows="5" path="description" id="genre_description" class="form-control" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-md-offset-4 col-md-8">
+								<input type="submit" value="Add Genre" class="btn btn-primary" />
+							</div>
+						</div>
+					</sf:form>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>

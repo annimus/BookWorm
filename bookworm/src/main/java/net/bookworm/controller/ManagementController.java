@@ -38,6 +38,7 @@ public class ManagementController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ManagementController.class);
 
+	// Shows all books and a new book form
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
 	public ModelAndView showManageBooks(@RequestParam(name = "operation", required = false) String operation) {
 		ModelAndView mv = new ModelAndView("page");
@@ -54,12 +55,15 @@ public class ManagementController {
 		if (operation != null) {
 			if (operation.equals("book")) {
 				mv.addObject("message", "Book Submitted Successfully!");
+			} else if (operation.equals("genre")) {
+				mv.addObject("message", "Genre Submitted Successfully!");
 			}
 		}
 
 		return mv;
 	}
 	
+	// Edits the book
 	@RequestMapping(value = "/{id}/book", method = RequestMethod.GET)
 	public ModelAndView showEditBook(@PathVariable int id) {
 		ModelAndView mv = new ModelAndView("page");
@@ -74,7 +78,7 @@ public class ManagementController {
 		return mv;
 	}
 
-	// Handling Book Submission
+	// Handles Book Submission
 	@RequestMapping(value = "/books", method = RequestMethod.POST)
 	public String handleBookSubmission(@Valid @ModelAttribute("book") Book nBook, BindingResult results, Model model, HttpServletRequest request) {
 		
@@ -108,6 +112,7 @@ public class ManagementController {
 		return "redirect:/manage/books?operation=book";
 	}
 	
+	// Handles book activation/deactivation
 	@RequestMapping(value = "/book/{id}/activation", method = RequestMethod.POST)
 	@ResponseBody
 	public String hadleBookActivation(@PathVariable int id) {
@@ -121,10 +126,24 @@ public class ManagementController {
 		return (isActive)? book.getName() + " has been deactivated." : book.getName() + " has been activated.";
 	}
 	
+	@RequestMapping(value = "/genre", method = RequestMethod.POST)
+	public String handleGenreSubmission(@ModelAttribute Genre genre) {
+		genre.setActive(true);
+		genreDAO.add(genre);
+		
+		return "redirect:/manage/books?operation=genre";
+	}
+	
 
 	// Returns the list of active genres
 	@ModelAttribute("genres")
 	public List<Genre> getGenres() {
 		return genreDAO.list();
+	}
+	
+	// Returns a new genre
+	@ModelAttribute("genre")
+	public Genre getGenre() {
+		return new Genre();
 	}
 }
