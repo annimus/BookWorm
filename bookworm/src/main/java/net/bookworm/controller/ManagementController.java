@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.backend.dao.BookDAO;
@@ -22,6 +24,7 @@ import net.backend.dao.GenreDAO;
 import net.backend.dto.Book;
 import net.backend.dto.Genre;
 import net.bookworm.util.FileUploadUtility;
+import net.bookworm.validator.BookValidator;
 
 @Controller
 @RequestMapping("/manage")
@@ -56,10 +59,31 @@ public class ManagementController {
 
 		return mv;
 	}
+	
+	@RequestMapping(value = "/{id}/book", method = RequestMethod.GET)
+	public ModelAndView showEditBook(@PathVariable int id) {
+		ModelAndView mv = new ModelAndView("page");
+
+		mv.addObject("userClickManageBooks", true);
+		mv.addObject("title", "Manage Books");
+		
+		Book book = bookDAO.get(id);
+
+		mv.addObject("book", book);
+
+		return mv;
+	}
 
 	// Handling Book Submission
 	@RequestMapping(value = "/books", method = RequestMethod.POST)
 	public String handleBookSubmission(@Valid @ModelAttribute("book") Book nBook, BindingResult results, Model model, HttpServletRequest request) {
+		
+		if (nBook.getId() == 0) {
+			new BookValidator().validate(nBook, results);
+		} else if (!nBook.getFile().getOriginalFilename().equals("")) {
+			new BookValidator().validate(nBook, results);
+		}
+		
 		// Check if there are any errors
 		if (results.hasErrors()) {
 			model.addAttribute("userClickManageBooks", true);
@@ -69,7 +93,13 @@ public class ManagementController {
 		}
 		
 		logger.info(nBook.toString());
-		bookDAO.add(nBook);
+		
+		// Checks if it's a new book or a edited book
+		if (nBook.getId() == 0) {
+			bookDAO.add(nBook);
+		} else {
+			bookDAO.update(nBook);
+		}
 		
 		if (!nBook.getFile().getOriginalFilename().equals("")) {
 			FileUploadUtility.uploadFile(request, nBook.getFile(), nBook.getCode());
@@ -77,6 +107,20 @@ public class ManagementController {
 
 		return "redirect:/manage/books?operation=book";
 	}
+	
+	@RequestMapping(value = "/book/{id}/activation", method = RequestMethod.POST)
+	@ResponseBody
+	public String hadleBookActivation(@PathVariable int id) {
+		Book book  = bookDAO.get(id);
+		boolean isActive = book.isActive();
+		
+		book.setActive(!book.isActive());
+		
+		bookDAO.update(book);
+		
+		return (isActive)? book.getName() + " has been deactivated." : book.getName() + " has been activated.";
+	}
+	
 
 	// Returns the list of active genres
 	@ModelAttribute("genres")

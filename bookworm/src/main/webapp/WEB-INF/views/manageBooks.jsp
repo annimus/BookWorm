@@ -23,10 +23,11 @@
 				</div>
 
 				<div class="panel-body">
-				
+
 					<!-- Form Elements -->
 					<sf:form class="form-horizontal" modelAttribute="book"
-						action="${contextRoot}/manage/books" method="POST" enctype="multipart/form-data">
+						action="${contextRoot}/manage/books" method="POST"
+						enctype="multipart/form-data">
 						<div class="form-group">
 							<label class="control-label col-md-4" for="name">Enter
 								Book Name:</label>
@@ -112,13 +113,14 @@
 									items="${genres}" itemLabel="name" itemValue="id" />
 							</div>
 						</div>
-						
+
 						<div class="form-group">
-							<label class="control-label col-md-4" for="file">Select an Image</label>
+							<label class="control-label col-md-4" for="file">Select
+								an Image</label>
 
 							<div class="col-md-8">
 								<sf:input type="file" path="file" id="file" class="form-control" />
-								<sf:errors path="isbn" cssClass="help-block" element="em" />
+								<sf:errors path="file" cssClass="help-block" element="em" />
 							</div>
 						</div>
 
@@ -138,6 +140,50 @@
 						<sf:hidden path="views" />
 					</sf:form>
 				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<h3>Available Books</h3>
+			<hr/>
+		</div>
+		
+		<div class="col-xs-12">
+			<div style="overflow: auto">
+
+				<!-- Book Table for Admin -->
+				<table id="adminBooksTable"
+					class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>&#160;</th>
+							<th>Name</th>
+							<th>Author</th>
+							<th>Publisher</th>
+							<th>Unit Price</th>
+							<th>Quantity</th>
+							<th>Active</th>
+							<th>Edit</th>
+						</tr>
+					</thead>
+
+					<tfoot>
+						<tr>
+							<th>Id</th>
+							<th>&#160;</th>
+							<th>Name</th>
+							<th>Author</th>
+							<th>Publisher</th>
+							<th>Unit Price</th>
+							<th>Quantity</th>
+							<th>Active</th>
+							<th>Edit</th>
+						</tr>
+					</tfoot>
+				</table>
 			</div>
 		</div>
 	</div>
