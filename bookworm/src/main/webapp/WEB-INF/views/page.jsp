@@ -80,6 +80,11 @@
 			<c:if test="${userClickShowBook == true}">
 				<%@include file="singleBook.jsp"%>
 			</c:if>
+			
+			<!-- Manage Books -->
+			<c:if test="${userClickManageBooks == true}">
+				<%@include file="manageBooks.jsp"%>
+			</c:if>
 
 		</div>
 		<!-- /Page Content -->

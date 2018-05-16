@@ -81,3 +81,7 @@ footer {
 .strikethrough {
 	text-decoration: line-through;
 }
+
+.help-block {
+	color: #FF0000;
+}

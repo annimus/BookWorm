@@ -12,6 +12,10 @@ $(function() {
 		case 'Contact Us!':
 			$('#contact').addClass('active');
 			break;
+			
+		case 'Manage Books':
+			$('#manageBooks').addClass('active');
+			break;
 	
 		// Highlights Our Collection in the navbar as well as highlights the genre
 		// in the sidebar
@@ -89,5 +93,14 @@ $(function() {
 			          }
 			          ]
 		});
+	}
+	
+	// Dismissing the alert after 3 seconds
+	var $alert = $('.alert');
+	
+	if ($alert.length) {
+		setTimeout(function() {
+			$alert.fadeOut('slow');
+		} , 3000)
 	}
 });
