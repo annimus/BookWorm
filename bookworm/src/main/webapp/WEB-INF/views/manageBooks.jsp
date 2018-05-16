@@ -23,17 +23,18 @@
 				</div>
 
 				<div class="panel-body">
+				
 					<!-- Form Elements -->
 					<sf:form class="form-horizontal" modelAttribute="book"
-						action="${contextRoot}/manage/books" method="POST">
+						action="${contextRoot}/manage/books" method="POST" enctype="multipart/form-data">
 						<div class="form-group">
 							<label class="control-label col-md-4" for="name">Enter
 								Book Name:</label>
 
 							<div class="col-md-8">
 								<sf:input type="text" path="name" id="name"
-									placeholder="Book Name" class="form-control" required="required"/>
-								<em class="help-block">Please enter the book name!</em>
+									placeholder="Book Name" class="form-control" />
+								<sf:errors path="name" cssClass="help-block" element="em" />
 							</div>
 						</div>
 
@@ -43,8 +44,8 @@
 
 							<div class="col-md-8">
 								<sf:input type="text" path="author" id="author"
-									placeholder="Author Name" class="form-control" required="required"/>
-								<em class="help-block">Please enter the author name!</em>
+									placeholder="Author Name" class="form-control" />
+								<sf:errors path="author" cssClass="help-block" element="em" />
 							</div>
 						</div>
 
@@ -54,8 +55,8 @@
 
 							<div class="col-md-8">
 								<sf:input type="text" path="publisher" id="publisher"
-									placeholder="Publisher Name" class="form-control" required="required"/>
-								<em class="help-block">Please enter the publisher name!</em>
+									placeholder="Publisher Name" class="form-control" />
+								<sf:errors path="publisher" cssClass="help-block" element="em" />
 							</div>
 						</div>
 
@@ -65,8 +66,8 @@
 							<div class="col-md-8">
 								<sf:textarea path="description" id="description" rows="4"
 									placeholder="Write a small description of the book."
-									class="form-control" required="required"></sf:textarea>
-								<em class="help-block">Please enter the description!</em>
+									class="form-control"></sf:textarea>
+								<sf:errors path="description" cssClass="help-block" element="em" />
 							</div>
 						</div>
 
@@ -76,8 +77,9 @@
 
 							<div class="col-md-8">
 								<sf:input type="number" path="unitPrice" id="unitPrice"
-									placeholder="Unit Price in &#36" class="form-control" min="0" step="0.01" required="required"/>
-								<em class="help-block">Please enter the unit price in &#36;!</em>
+									placeholder="Unit Price in &#36;" class="form-control" min="0"
+									step="0.01" />
+								<sf:errors path="unitPrice" cssClass="help-block" element="em" />
 							</div>
 						</div>
 
@@ -86,8 +88,8 @@
 
 							<div class="col-md-8">
 								<sf:input type="number" path="quantity" id="quantity"
-									placeholder="Quantity" class="form-control" required="required"/>
-								<em class="help-block">Please enter the quantity!</em>
+									placeholder="Quantity" class="form-control" />
+								<sf:errors path="quantity" cssClass="help-block" element="em" />
 							</div>
 						</div>
 
@@ -96,8 +98,8 @@
 
 							<div class="col-md-8">
 								<sf:input type="number" path="isbn" id="isbn"
-									placeholder="I.S.B.N." class="form-control" required="required"/>
-								<em class="help-block">Please enter the I.S.B.N.!</em>
+									placeholder="I.S.B.N." class="form-control" />
+								<sf:errors path="isbn" cssClass="help-block" element="em" />
 							</div>
 						</div>
 
@@ -108,6 +110,15 @@
 							<div class="col-md-8">
 								<sf:select class="form-control" id="genreId" path="genreId"
 									items="${genres}" itemLabel="name" itemValue="id" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-4" for="file">Select an Image</label>
+
+							<div class="col-md-8">
+								<sf:input type="file" path="file" id="file" class="form-control" />
+								<sf:errors path="isbn" cssClass="help-block" element="em" />
 							</div>
 						</div>
 

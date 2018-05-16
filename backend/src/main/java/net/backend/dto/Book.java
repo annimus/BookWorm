@@ -7,176 +7,199 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Book {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private int id;
 
-    @Column(name = "code")
-    private String code;
+	@Column(name = "code")
+	private String code;
 
-    @Column(name = "name")
-    private String name;
+	@NotBlank(message = "Please enter the book name.")
+	@Column(name = "name")
+	private String name;
 
-    @Column(name = "publisher")
-    private String publisher;
+	@NotBlank(message = "Please enter the publisher's name.")
+	@Column(name = "publisher")
+	private String publisher;
 
-    @Column(name = "author")
-    private String author;
+	@NotBlank(message = "Please enter the author's name.")
+	@Column(name = "author")
+	private String author;
 
-    @Column(name = "description")
-    private String description;
+	@NotBlank(message = "Please enter a short description for the book.")
+	@Column(name = "description")
+	private String description;
 
-    @Column(name = "unit_price")
-    private double unitPrice;
+	@Min(value = 1, message = "Please enter the unit price in $XX.XX")
+	@Column(name = "unit_price")
+	private double unitPrice;
 
-    @Column(name = "quantity")
-    private int quantity;
+	@Min(value = 0)
+	@Column(name = "quantity")
+	private int quantity;
 
-    @Column(name = "is_active")
-    private boolean active;
+	@Column(name = "is_active")
+	private boolean active;
 
-    @Column(name = "genre_id")
-    private int genreId;
+	@Column(name = "genre_id")
+	private int genreId;
 
-    @Column(name = "supplier_id")
-    private int supplierId;
+	@Column(name = "supplier_id")
+	private int supplierId;
 
-    @Column(name = "purchases")
-    private int purchases;
+	@Column(name = "purchases")
+	private int purchases;
 
-    @Column(name = "views")
-    private int views;
+	@Column(name = "views")
+	private int views;
 
-    @Column(name = "isbn")
-    private int isbn;
+	@Min(value = 1, message = "Please enter the book's I.S.B.N..")
+	@Column(name = "isbn")
+	private int isbn;
+	
+	@Transient
+	private MultipartFile file;
 
-    public Book() {
-	this.code = "BK" + UUID.randomUUID().toString().toUpperCase();
-    }
+	public Book() {
+		this.code = "BK" + UUID.randomUUID().toString().toUpperCase();
+	}
 
-    // Getter and Setters
-    public int getId() {
-	return id;
-    }
+	// Getter and Setters
+	public int getId() {
+		return id;
+	}
 
-    public void setId(int id) {
-	this.id = id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public String getCode() {
-	return code;
-    }
+	public String getCode() {
+		return code;
+	}
 
-    public void setCode(String code) {
-	this.code = code;
-    }
+	public void setCode(String code) {
+		this.code = code;
+	}
 
-    public String getName() {
-	return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-	this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getPublisher() {
-	return publisher;
-    }
+	public String getPublisher() {
+		return publisher;
+	}
 
-    public void setPublisher(String publisher) {
-	this.publisher = publisher;
-    }
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
 
-    public String getAuthor() {
-	return author;
-    }
+	public String getAuthor() {
+		return author;
+	}
 
-    public void setAuthor(String author) {
-	this.author = author;
-    }
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 
-    public String getDescription() {
-	return description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescription(String description) {
-	this.description = description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public double getUnitPrice() {
-	return unitPrice;
-    }
+	public double getUnitPrice() {
+		return unitPrice;
+	}
 
-    public void setUnitPrice(double unitPrice) {
-	this.unitPrice = unitPrice;
-    }
+	public void setUnitPrice(double unitPrice) {
+		this.unitPrice = unitPrice;
+	}
 
-    public int getQuantity() {
-	return quantity;
-    }
+	public int getQuantity() {
+		return quantity;
+	}
 
-    public void setQuantity(int quantity) {
-	this.quantity = quantity;
-    }
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 
-    public boolean isActive() {
-	return active;
-    }
+	public boolean isActive() {
+		return active;
+	}
 
-    public void setActive(boolean active) {
-	this.active = active;
-    }
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 
-    public int getGenreId() {
-	return genreId;
-    }
+	public int getGenreId() {
+		return genreId;
+	}
 
-    public void setGenreId(int genreId) {
-	this.genreId = genreId;
-    }
+	public void setGenreId(int genreId) {
+		this.genreId = genreId;
+	}
 
-    public int getSupplierId() {
-	return supplierId;
-    }
+	public int getSupplierId() {
+		return supplierId;
+	}
 
-    public void setSupplierId(int supplierId) {
-	this.supplierId = supplierId;
-    }
+	public void setSupplierId(int supplierId) {
+		this.supplierId = supplierId;
+	}
 
-    public int getPurchases() {
-	return purchases;
-    }
+	public int getPurchases() {
+		return purchases;
+	}
 
-    public void setPurchases(int purchases) {
-	this.purchases = purchases;
-    }
+	public void setPurchases(int purchases) {
+		this.purchases = purchases;
+	}
 
-    public int getViews() {
-	return views;
-    }
+	public int getViews() {
+		return views;
+	}
 
-    public void setViews(int views) {
-	this.views = views;
-    }
+	public void setViews(int views) {
+		this.views = views;
+	}
 
-    public int getIsbn() {
-	return isbn;
-    }
+	public int getIsbn() {
+		return isbn;
+	}
 
-    public void setIsbn(int isbn) {
-	this.isbn = isbn;
-    }
+	public void setIsbn(int isbn) {
+		this.isbn = isbn;
+	}
+	
+	public MultipartFile getFile() {
+		return file;
+	}
 
-    @Override
-    public String toString() {
-	return "Book [id=" + id + ", code=" + code + ", name=" + name + ", publisher=" + publisher + ", author="
-		+ author + ", description=" + description + ", unitPrice=" + unitPrice + ", quantity=" + quantity
-		+ ", active=" + active + ", genreId=" + genreId + ", supplierId=" + supplierId + ", purchases="
-		+ purchases + ", views=" + views + ", isbn=" + isbn + "]";
-    }
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", code=" + code + ", name=" + name + ", publisher=" + publisher + ", author="
+				+ author + ", description=" + description + ", unitPrice=" + unitPrice + ", quantity=" + quantity
+				+ ", active=" + active + ", genreId=" + genreId + ", supplierId=" + supplierId + ", purchases="
+				+ purchases + ", views=" + views + ", isbn=" + isbn + "]";
+	}
 }
