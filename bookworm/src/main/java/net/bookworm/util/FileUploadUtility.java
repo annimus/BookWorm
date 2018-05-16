@@ -15,7 +15,7 @@ public class FileUploadUtility {
 	//private static final String ABS_PATH = "C:\\Users\\Guilherme\\git\\BookWorm\\bookworm\\src\\main\\webapp\\assets\\images\\";
 	
 	// Ubuntu ABS_PATH
-	private static final String ABS_PATH = "/home/guilherme/git/BookWorm/bookworm/src/main/webapp/assets/images";
+	private static final String ABS_PATH = "/home/guilherme/git/BookWorm/bookworm/src/main/webapp/assets/images/";
 	
 	private static String REAL_PATH = "";
 	private static final Logger logger = LoggerFactory.getLogger(FileUploadUtility.class);
