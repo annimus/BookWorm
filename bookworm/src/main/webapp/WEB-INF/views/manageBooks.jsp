@@ -211,7 +211,7 @@
 				<!-- Modal Body -->
 				<div class="modal-body">
 					<!-- Genre Form -->
-					<sf:form modelAttribute="genre" action="${contextRoot}/manage/genre" 
+					<sf:form id="genreForm" modelAttribute="genre" action="${contextRoot}/manage/genre" 
 						method="POST" class="form-horizontal">
 					
 						<div class="form-group">

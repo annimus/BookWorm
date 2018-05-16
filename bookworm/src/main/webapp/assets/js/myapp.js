@@ -246,4 +246,46 @@ $(function() {
 						}
 			});
 	}
+	
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	// Validation Code for Genre
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	var $genreForm = $('#genreForm');
+	
+	if ($genreForm.length) {
+		$genreForm.validate({
+			rules : {
+				name : {
+					required: true,
+					minlength: 2
+				},
+				
+				description: {
+					required: true
+				}
+			},
+			
+			messages : {
+				name : {
+					required: 'Please enter the genre name.',
+					minlength: 'The genre name can not be less than 2 characters'
+				},
+				
+				description: {
+					required: 'Please enter a short description for the genre.'
+				}
+			},
+			
+			errorElement: 'em',
+			errorPlacement: function(error, element) {
+				error.addClass('help-block');
+				
+				// adds the error element after the input element
+				error.insertAfter(element);
+			}
+		});
+	}
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	// End of Validation Code for Genre
+	// -------------------------------------------------------------------------------------------------------------------------------------
 });
