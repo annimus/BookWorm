@@ -24,7 +24,7 @@ public class Genre {
 	private String imageURL;
 
 	@Column(name = "is_active")
-	private boolean active;
+	private boolean active = true;
 
 	// Getters and Setters
 	public int getId() {

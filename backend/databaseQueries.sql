@@ -35,7 +35,9 @@ INSERT INTO user_detail (first_name, last_name, role, enabled, password, email, 
 	
 INSERT INTO user_detail (first_name, last_name, role, enabled, password, email, contact_number)
 	VALUES ('Independent Publishers Group', '', 'SUPPLIER', true, '12345', 'contact@ipg.com', '77777777');
-
+	
+INSERT INTO user_detail (first_name, last_name, role, enabled, password, email, contact_number)
+	VALUES ('Leonardo', 'Silva', 'USER', true, '12345', 'leonardo@gmail.com', '77777777');
 	
 DROP TABLE IF EXISTS book;
 CREATE TABLE book(
@@ -73,3 +75,34 @@ INSERT INTO book (code, name, publisher, author, description, unit_price, quanti
 	genre_id, supplier_id, purchases, views, isbn)
 	VALUES ('PAZASDASDFAZXX14', 'Iron and Magic', 'NYLA', 'Ilona Andrews', 'Iron and Magic is first book in the Iron Covenant Series',
 		6.89, 0, true, 3, 2, 0, 0, 0107897448);
+		
+DROP TABLE IF EXISTS address;
+CREATE TABLE address (
+	id IDENTITY,
+	user_id int,
+	address_line_one VARCHAR(100),
+	address_line_two VARCHAR(100),
+	city VARCHAR(20),
+	state VARCHAR(20),
+	country VARCHAR(20),
+	postal_code VARCHAR(10),
+	is_billing BOOLEAN,
+	is_shipping BOOLEAN,
+	CONSTRAINT fk_address_user_id FOREIGN KEY (user_id ) REFERENCES user_detail (id),
+	CONSTRAINT pk_address_id PRIMARY KEY (id)
+);
+
+INSERT INTO address( user_id, address_line_one, address_line_two, city, state, country, postal_code, is_billing, is_shipping) 
+VALUES (2, '102 Sabarmati Society, Mahatma Gandhi Road', 'Near Salt Lake, Gandhi Nagar', 'Ahmedabad', 'Gujarat', 'India', '111111', true, false );
+
+DROP TABLE IF EXISTS cart;
+CREATE TABLE cart (
+	id IDENTITY,
+	user_id int,
+	grand_total DECIMAL(10,2),
+	cart_lines int,
+	CONSTRAINT fk_cart_user_id FOREIGN KEY (user_id ) REFERENCES user_detail (id),
+	CONSTRAINT pk_cart_id PRIMARY KEY (id)
+);
+
+INSERT INTO cart (user_id, grand_total, cart_lines) VALUES (4, 199, 2);

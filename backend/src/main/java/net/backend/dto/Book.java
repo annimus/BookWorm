@@ -49,7 +49,7 @@ public class Book {
 	private int quantity;
 
 	@Column(name = "is_active")
-	private boolean active;
+	private boolean active = true;
 
 	@Column(name = "genre_id")
 	private int genreId;
