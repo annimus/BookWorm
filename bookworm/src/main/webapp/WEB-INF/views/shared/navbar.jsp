@@ -1,3 +1,5 @@
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container">
@@ -18,14 +20,49 @@
 				<li id="about"><a href="${contextRoot}/about">About Us</a></li>
 				<li id="contact"><a href="${contextRoot}/contact">Contact Us</a></li>
 				<li id="listBooks"><a href="${contextRoot}/show/all/books">Our Collection</a></li>
-				<li id="manageBooks"><a href="${contextRoot}/manage/books">Manage Books</a></li>
+				<security:authorize access="hasAuthority('ADMIN')">
+					<li id="manageBooks"><a href="${contextRoot}/manage/books">Manage Books</a></li>
+				</security:authorize>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li id="register"><a href="${contextRoot}/register">Sign Up</a></li>
-				<li id="login"><a href="${contextRoot}/login">Login</a></li>
+				<security:authorize access="isAnonymous()">
+					<li id="register"><a href="${contextRoot}/register">Sign Up</a></li>
+					<li id="login"><a href="${contextRoot}/login">Login</a></li>
+				</security:authorize>
+				
+				<security:authorize access="isAuthenticated()">
+					<li class="dropdown">
+						<a href="javascript:void(0)" class="btn btn-outline-primary" 
+							id="dropdownMenu1" data-toggle="dropdown">
+						
+							${userModel.fullName}
+							<span class="caret"></span>	
+						</a>
+						<ul class="dropdown-menu">
+							<security:authorize access="hasAuthority('USER')">
+								<li>
+									<a href="${contextRoot}/cart">
+										<span class="glyphicon glyphicon-shopping-cart"></span>
+										<span class="badge">${userModel.cart.cartLines}</span>
+										- &#36; ${userModel.cart.grandTotal}
+									</a>
+								</li>
+								<li class="divider" role="seprator"></li>
+							</security:authorize>
+							
+							<li>
+								<a href="${contextRoot}/logout">Logout</a>
+							</li>
+						</ul>
+					</li>
+				</security:authorize>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container -->
 </nav>
+
+<script>
+	window.userRole = '${userModel.role}';
+</script>

@@ -20,7 +20,7 @@ CREATE TABLE user_detail(
 	last_name VARCHAR(50),
 	role VARCHAR(50),
 	enabled BOOLEAN,
-	password VARCHAR(50),
+	password VARCHAR(60),
 	email VARCHAR(100),
 	contact_number VARCHAR(15),
 	
@@ -28,16 +28,16 @@ CREATE TABLE user_detail(
 );
 
 INSERT INTO user_detail (first_name, last_name, role, enabled, password, email, contact_number)
-	VALUES ('Guilherme', 'Silva', 'ADMIN', true, 'admin', 'guilherme.ferreira.silva9@gmail.com', '99999999');
+	VALUES ('Admin', 'ADmin', 'ADMIN', true, '$2b$10$HDAdKby.Ay0LWR2zFddOX.OVkbjU4cImh2P/QQ2MFgR23wQg86cFW', 'admin@bookworm.com', '99999999');
 	
 INSERT INTO user_detail (first_name, last_name, role, enabled, password, email, contact_number)
-	VALUES ('Ingram Content Group Inc.', '', 'SUPPLIER', true, '12345', 'contact@ingram.com', '88888888');
+	VALUES ('Ingram Content Group Inc.', '', 'SUPPLIER', true, '$2b$10$mTAp1YVYgECAUXqH5hqeyuW6PrywRbuWN0.CSkUSI4ADUChtVl7Fy', 'contact@ingram.com', '88888888');
 	
 INSERT INTO user_detail (first_name, last_name, role, enabled, password, email, contact_number)
-	VALUES ('Independent Publishers Group', '', 'SUPPLIER', true, '12345', 'contact@ipg.com', '77777777');
+	VALUES ('Independent Publishers Group', '', 'SUPPLIER', true, '$2b$10$mTAp1YVYgECAUXqH5hqeyuW6PrywRbuWN0.CSkUSI4ADUChtVl7Fy', 'contact@ipg.com', '77777777');
 	
 INSERT INTO user_detail (first_name, last_name, role, enabled, password, email, contact_number)
-	VALUES ('Leonardo', 'Silva', 'USER', true, '12345', 'leonardo@gmail.com', '77777777');
+	VALUES ('User', 'User', 'USER', true, '$2b$10$ZIISA77JAMrVgdjQKoeotuV0Ohkfaa0lddNzAyDjAosqwc7xJBKJ.', 'user@bookworm.com', '77777777');
 	
 DROP TABLE IF EXISTS book;
 CREATE TABLE book(

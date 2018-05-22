@@ -28,7 +28,22 @@ $(function() {
 	// -------------------------------------------------------------------------------------------------------------------------------------
 	// End Active Menu
 	// -------------------------------------------------------------------------------------------------------------------------------------
-
+	
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	// CSRF Token
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	var token = $('meta[name="_csrf"').attr('content');
+	var header = $('meta[name="_csrf_header"').attr('content');
+	
+	if ((token.length > 0) && (header.length > 0)) {
+		$(document).ajaxSend(function(e, xhr, options) {
+			xhr.setRequestHeader(header, token);
+		});
+	}
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	// End CSRF Token
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	
 	// -------------------------------------------------------------------------------------------------------------------------------------
 	// Code for jquery DataTable
 	// -------------------------------------------------------------------------------------------------------------------------------------
@@ -92,15 +107,25 @@ $(function() {
 										+ '/show/'
 										+ data
 										+ '/book" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a> &#160;';
-									if (row.quantity < 1) {
-									str += '<a href="javascript:void(0)" class="btn btn-success disabled"><span class="glyphicon glyphicon-shopping-cart strikethrough"></span></a>';
-								} else {
-									str += '<a href="'
-											+ window.contextRoot
-											+ '/cart/add/'
-											+ data
-											+ '/book" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
-								}
+									if ((row.quantity < 1) && (userRole != 'ADMIN')) {
+										str += '<a href="javascript:void(0)" class="btn btn-success disabled"><span class="glyphicon glyphicon-shopping-cart strikethrough"></span></a>';
+									} else {
+										if (userRole == 'ADMIN') {
+											str += '<a href="'
+												+ window.contextRoot
+												+ '/manage/'
+												+ data
+												+ '/book" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>';
+										} else {
+											str += '<a href="'
+												+ window.contextRoot
+												+ '/cart/add/'
+												+ data
+												+ '/book" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+										}
+										
+										
+									}
 									return str;
 							}
 						} ]
@@ -287,5 +312,47 @@ $(function() {
 	}
 	// -------------------------------------------------------------------------------------------------------------------------------------
 	// End of Validation Code for Genre
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	// Validation Code for Login
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	var $loginForm = $('#loginForm');
+	
+	if ($loginForm.length) {
+		$loginForm.validate({
+			rules : {
+				username : {
+					required: true,
+					email: true
+				},
+				
+				password: {
+					required: true
+				}
+			},
+			
+			messages : {
+				username : {
+					required: 'Please enter your username (email).',
+					email: 'Please enter a valid email address.'
+				},
+				
+				password: {
+					required: 'Please enter your password.'
+				}
+			},
+			
+			errorElement: 'em',
+			errorPlacement: function(error, element) {
+				error.addClass('help-block');
+				
+				// adds the error element after the input element
+				error.insertAfter(element);
+			}
+		});
+	}
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	// End of Validation Code for Login
 	// -------------------------------------------------------------------------------------------------------------------------------------
 });

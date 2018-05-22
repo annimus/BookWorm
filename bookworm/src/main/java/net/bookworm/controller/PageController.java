@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.backend.dao.BookDAO;
@@ -18,7 +19,7 @@ import net.bookworm.exception.BookNotFoundException;
 public class PageController {
 
 	private static final Logger logger = LoggerFactory.getLogger(PageController.class);
-	
+
 	@Autowired
 	private GenreDAO genreDAO;
 
@@ -30,7 +31,7 @@ public class PageController {
 	public ModelAndView index() {
 		logger.info("Inside PageController index method - INFO");
 		logger.debug("Inside PageController index method - DEBUG");
-		
+
 		ModelAndView mv = new ModelAndView("page");
 
 		mv.addObject("title", "Home");
@@ -94,7 +95,7 @@ public class PageController {
 		ModelAndView mv = new ModelAndView("page");
 
 		Book book = bookDAO.get(id);
-		
+
 		if (book == null) {
 			throw new BookNotFoundException();
 		}
@@ -102,10 +103,34 @@ public class PageController {
 		// Update view count
 		book.setViews(book.getViews() + 1);
 		bookDAO.update(book);
-		
+
 		mv.addObject("title", book.getName());
 		mv.addObject("book", book);
 		mv.addObject("userClickShowBook", true);
+
+		return mv;
+	}
+
+	// Login
+	@RequestMapping(value = "/login")
+	public ModelAndView login(@RequestParam(name = "error", required = false) String error) {
+		ModelAndView mv = new ModelAndView("login");
+		mv.addObject("title", "Login");
+
+		if (error != null) {
+			mv.addObject("message", "Invalid username and password");
+		}
+
+		return mv;
+	}
+	
+	// Access Denied
+	@RequestMapping(value = "/access-denied")
+	public ModelAndView accessDenied() {
+		ModelAndView mv = new ModelAndView("error");
+		mv.addObject("title", "Access Denied");
+		mv.addObject("errorTitle", "Aha! Caught you!");
+		mv.addObject("errorDescription", "You are not authorized to view this page.");
 
 		return mv;
 	}
