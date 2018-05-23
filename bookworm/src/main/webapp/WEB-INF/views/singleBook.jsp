@@ -33,6 +33,11 @@
 			</h5>
 			<p>${book.description}</p>
 			<hr />
+			<div class="textInline">
+				<h3 class="textInline">Rating: 4.5<h2 class="textInline">/5</h2></h3>
+			</div>
+			
+			<hr />
 			<h4>
 				Price: <strong> &#36; ${book.unitPrice}</strong>
 			</h4>

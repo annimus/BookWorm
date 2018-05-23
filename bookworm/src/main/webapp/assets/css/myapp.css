@@ -103,6 +103,10 @@ footer {
 	color:red;
 }
 
+.textInline {
+	display: inline;
+}
+
 /**
 
 	Switch Toggle CSS
