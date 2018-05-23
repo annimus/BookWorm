@@ -91,6 +91,10 @@ footer {
 	height: 150px;
 }
 
+.table-responsive {
+	overflow-x: inherit; 
+}
+
 /**
 
 	Switch Toggle CSS

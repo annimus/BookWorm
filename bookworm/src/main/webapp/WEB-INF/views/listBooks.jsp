@@ -46,28 +46,33 @@
 
 			<div class="row">
 				<div class="col-xs-12">
-					<table id="bookListTable" class="table table-striped table-borderd">
-						<thead>
-							<tr>
-								<th></th>
-								<th>Name</th>
-								<th>Author</th>
-								<th>Price</th>
-								<th>Available</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-								<th></th>
-								<th>Name</th>
-								<th>Author</th>
-								<th>Price</th>
-								<th>Available</th>
-								<th></th>
-							</tr>
-						</tfoot>
-					</table>
+					<div class="container-fluid">
+						<div class="table-responsive">
+							<table id="bookListTable"
+								class="table table-striped table-borderd">
+								<thead>
+									<tr>
+										<th></th>
+										<th>Name</th>
+										<th>Author</th>
+										<th>Price</th>
+										<th>Available</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th></th>
+										<th>Name</th>
+										<th>Author</th>
+										<th>Price</th>
+										<th>Available</th>
+										<th></th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -113,7 +113,7 @@
 								<sf:errors path="file" cssClass="help-block" element="em" />
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 							<label class="control-label col-md-4" for="genreId">Select
 								the Genre:</label>
@@ -121,13 +121,14 @@
 							<div class="col-md-8">
 								<sf:select class="form-control" id="genreId" path="genreId"
 									items="${genres}" itemLabel="name" itemValue="id" />
-									
+
 								<c:if test="${book.id == 0}">
 									<div class="text-right">
-										 <br/>
-										 <button type="button" data-toggle="modal" data-target="#myGenreModal" 
-										 	class="btn btn-warning btn-xs">Add Genre</button>
-									 </div>
+										<br />
+										<button type="button" data-toggle="modal"
+											data-target="#myGenreModal" class="btn btn-warning btn-xs">Add
+											Genre</button>
+									</div>
 								</c:if>
 							</div>
 						</div>
@@ -155,44 +156,46 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<h3>Available Books</h3>
-			<hr/>
+			<hr />
 		</div>
-		
+
 		<div class="col-xs-12">
-			<div style="overflow: auto">
+			<div class="container-fluid">
+				<div class="table-responsive">
+					<table id="adminBooksTable"
+						class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>&#160;</th>
+								<th>Name</th>
+								<th>Author</th>
+								<th>Publisher</th>
+								<th>Unit Price</th>
+								<th>Quantity</th>
+								<th>Active</th>
+								<th>Edit</th>
+							</tr>
+						</thead>
 
-				<!-- Book Table for Admin -->
-				<table id="adminBooksTable"
-					class="table table-striped table-bordered">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>&#160;</th>
-							<th>Name</th>
-							<th>Author</th>
-							<th>Publisher</th>
-							<th>Unit Price</th>
-							<th>Quantity</th>
-							<th>Active</th>
-							<th>Edit</th>
-						</tr>
-					</thead>
-
-					<tfoot>
-						<tr>
-							<th>Id</th>
-							<th>&#160;</th>
-							<th>Name</th>
-							<th>Author</th>
-							<th>Publisher</th>
-							<th>Unit Price</th>
-							<th>Quantity</th>
-							<th>Active</th>
-							<th>Edit</th>
-						</tr>
-					</tfoot>
-				</table>
+						<tfoot>
+							<tr>
+								<th>Id</th>
+								<th>&#160;</th>
+								<th>Name</th>
+								<th>Author</th>
+								<th>Publisher</th>
+								<th>Unit Price</th>
+								<th>Quantity</th>
+								<th>Active</th>
+								<th>Edit</th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
 			</div>
+			<!-- Book Table for Admin -->
+
 		</div>
 	</div>
 
@@ -204,30 +207,33 @@
 					<button type="button" class="close" data-dismiss="modal">
 						<span>&times;</span>
 					</button>
-					
+
 					<h4 class="modal-title">Add New Genre</h4>
 				</div>
-				
+
 				<!-- Modal Body -->
 				<div class="modal-body">
 					<!-- Genre Form -->
-					<sf:form id="genreForm" modelAttribute="genre" action="${contextRoot}/manage/genre" 
-						method="POST" class="form-horizontal">
-					
+					<sf:form id="genreForm" modelAttribute="genre"
+						action="${contextRoot}/manage/genre" method="POST"
+						class="form-horizontal">
+
 						<div class="form-group">
 							<label for="genre_name" class="control-label col-md-4">Name:</label>
 							<div class="col-md-8">
-								<sf:input type="text" path="name" id="genre_name" class="form-control" />
+								<sf:input type="text" path="name" id="genre_name"
+									class="form-control" />
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 							<label for="genre_description" class="control-label col-md-4">Description:</label>
 							<div class="col-md-8">
-								<sf:textarea rows="5" path="description" id="genre_description" class="form-control" />
+								<sf:textarea rows="5" path="description" id="genre_description"
+									class="form-control" />
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 							<div class="col-md-offset-4 col-md-8">
 								<input type="submit" value="Add Genre" class="btn btn-primary" />

@@ -63,11 +63,23 @@
 		<!-- Page Content -->
 		<div class="content">
 			<div class="container">
+				<!-- Displays message when credentials are wrong -->
 				<c:if test="${not empty message}">
 					<div class="row">
 						<div class="col-md-offset-3 col-md-6">
 							<div class="alert alert-danger">
 								${message}
+							</div>
+						</div>
+					</div>
+				</c:if>
+				
+				<!-- Displays logout message -->
+				<c:if test="${not empty logout}">
+					<div class="row">
+						<div class="col-md-offset-3 col-md-6">
+							<div class="alert alert-success">
+								${logout}
 							</div>
 						</div>
 					</div>
@@ -109,7 +121,7 @@
 
 								<div class="panel-footer">
 									<div class="text-right">
-										<a href="${contextRoot}/register">Register Here!</a>
+										New Here? <a href="${contextRoot}/register">Register Today!</a>
 									</div>
 								</div>
 							</div>
