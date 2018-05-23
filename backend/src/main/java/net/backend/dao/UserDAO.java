@@ -3,7 +3,6 @@ package net.backend.dao;
 import java.util.List;
 
 import net.backend.dto.Address;
-import net.backend.dto.Cart;
 import net.backend.dto.User;
 
 public interface UserDAO {
@@ -18,5 +17,4 @@ public interface UserDAO {
     
     List<Address> listShippingAddress(User user);
     
-    boolean updateCart(Cart cart);
 }

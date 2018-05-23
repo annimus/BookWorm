@@ -87,6 +87,11 @@
 			<c:if test="${userClickManageBooks == true}">
 				<%@include file="manageBooks.jsp"%>
 			</c:if>
+			
+			<!-- Show Cart -->
+			<c:if test="${userClickShowCart == true}">
+				<%@include file="cart.jsp"%>
+			</c:if>
 
 		</div>
 		<!-- /Page Content -->

@@ -3,59 +3,58 @@
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
-
 html {
 	height: 100%;
 }
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+	padding-top: 70px;
+	/* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 	height: 100%;
 }
 
 .slide-image {
-    width: 100%;
+	width: 100%;
 }
 
 .carousel-holder {
-    margin-bottom: 30px;
+	margin-bottom: 30px;
 }
 
-.carousel-control,
-.item {
-    border-radius: 4px;
+.carousel-control, .item {
+	border-radius: 4px;
 }
 
 .caption {
-    height: 130px;
-    overflow: hidden;
+	height: 130px;
+	overflow: hidden;
 }
 
 .caption h4 {
-    white-space: nowrap;
+	white-space: nowrap;
 }
 
 .thumbnail img {
-    width: 100%;
+	width: 100%;
 }
 
 .ratings {
-    padding-right: 10px;
-    padding-left: 10px;
-    color: #d17581;
+	padding-right: 10px;
+	padding-left: 10px;
+	color: #d17581;
 }
 
 .thumbnail {
-    padding: 0;
+	padding: 0;
 }
 
 .thumbnail .caption-full {
-    padding: 9px;
-    color: #333;
+	padding: 9px;
+	color: #333;
 }
 
 footer {
-    margin: 0;
+	margin: 0;
 }
 
 .wrapper {
@@ -92,7 +91,7 @@ footer {
 }
 
 .table-responsive {
-	overflow-x: inherit; 
+	overflow-x: inherit;
 }
 
 /**
@@ -100,7 +99,6 @@ footer {
 	Switch Toggle CSS
 
 **/
-
 .switch {
 	width: 50px;
 	height: 30px;
@@ -136,11 +134,60 @@ footer {
 	transition: .5s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
 	background-color: #1863E6;
-	
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
 	transform: translateX(20px);
+}
+
+/**
+
+	Cart CSS
+	
+**/
+.table>tbody>tr>td, .table>tfoot>tr>td {
+	vertical-align: middle;
+}
+
+@media screen and (max-width: 600px) {
+	table#cart tbody td .form-control {
+		width: 20%;
+		display: inline !important;
+	}
+	.actions .btn {
+		width: 36%;
+		margin: 1.5em 0;
+	}
+	.actions .btn-info {
+		float: left;
+	}
+	.actions .btn-danger {
+		float: right;
+	}
+	table#cart thead {
+		display: none;
+	}
+	table#cart tbody td {
+		display: block;
+		padding: .6rem;
+		min-width: 320px;
+	}
+	table#cart tbody tr td:first-child {
+		background: #333;
+		color: #fff;
+	}
+	table#cart tbody td:before {
+		content: attr(data-th);
+		font-weight: bold;
+		display: inline-block;
+		width: 8rem;
+	}
+	table#cart tfoot td {
+		display: block;
+	}
+	table#cart tfoot td .btn {
+		display: block;
+	}
 }

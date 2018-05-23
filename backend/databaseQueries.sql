@@ -106,3 +106,18 @@ CREATE TABLE cart (
 );
 
 INSERT INTO cart (user_id, grand_total, cart_lines) VALUES (4, 199, 2);
+
+DROP TABLE IF EXISTS cart_line;
+CREATE TABLE cart_line (
+	id IDENTITY,
+	cart_id int,
+	total DECIMAL(10,2),
+	book_id int,
+	book_count int,
+	buying_price DECIMAL(10,2),
+	is_available boolean,
+	
+	CONSTRAINT fk_cartline_cart_id FOREIGN KEY (cart_id) REFERENCES cart (id),
+	CONSTRAINT fk_cartline_book_id FOREIGN KEY (book_id) REFERENCES book (id),
+	CONSTRAINT pk_cartline_id PRIMARY KEY (id)
+);
