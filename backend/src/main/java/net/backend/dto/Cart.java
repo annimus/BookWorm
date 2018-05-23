@@ -1,6 +1,8 @@
 package net.backend.dto;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -51,7 +53,11 @@ public class Cart implements Serializable {
     }
 
     public void setGrandTotal(double grandTotal) {
-        this.grandTotal = grandTotal;
+    	DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance();
+		symbols.setDecimalSeparator('.');
+		DecimalFormat df = new DecimalFormat("#.##", symbols);
+		
+        this.grandTotal = Double.parseDouble(df.format(grandTotal));
     }
 
     public int getCartLines() {

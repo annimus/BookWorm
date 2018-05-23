@@ -16,6 +16,10 @@ $(function() {
 	case 'Manage Books':
 		$('#manageBooks').addClass('active');
 		break;
+		
+	case 'Cart':
+		$('#userCart').addClass('active');
+		break;
 
 	// Highlights Our Collection in the navbar as well as highlights the genre
 	// in the sidebar
@@ -355,4 +359,33 @@ $(function() {
 	// -------------------------------------------------------------------------------------------------------------------------------------
 	// End of Validation Code for Login
 	// -------------------------------------------------------------------------------------------------------------------------------------
+	
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	// Handling Refresh CartLine Button Event
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	$('button[name="refreshCart"').click(function() {
+		var cartLineId = $(this).attr('value');
+		var countElement = $('#count_' + cartLineId);
+		var originalCount = countElement.attr('value');
+		var currentCount = countElement.val();
+		
+		// Refreshes only when count has changed
+		if (currentCount !== originalCount) {
+			
+			// Cannot be less than 1
+			if (currentCount < 1) {
+				countElement.val(originalCount);
+				bootbox.alert({
+					size: 'medium',
+					title: 'Error',
+					message: 'You cant buy less than 1!'
+				});
+			} else {
+				var updateUrl = window.contextRoot + '/cart/' + cartLineId + '/update?count=' + currentCount;
+				window.location.href = updateUrl;
+			}
+			
+		}
+		
+	});
 });

@@ -35,7 +35,7 @@
 						<ol class="breadcrumb">
 
 							<li><a href="${contextRoot}/home">Home</a></li>
-							<li class="active">Genre</li>
+							<li><a href="${contextRoot}/show/all/books">All Books</a></li>
 							<li class="active">${genre.name}</li>
 
 

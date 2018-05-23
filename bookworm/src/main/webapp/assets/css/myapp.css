@@ -94,6 +94,15 @@ footer {
 	overflow-x: inherit;
 }
 
+.cartImg {
+	width: 100px;
+	height: 125px;
+}
+
+.unavailable {
+	color:red;
+}
+
 /**
 
 	Switch Toggle CSS

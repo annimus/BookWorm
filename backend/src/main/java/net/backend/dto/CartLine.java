@@ -1,6 +1,8 @@
 package net.backend.dto;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -74,7 +76,11 @@ public class CartLine implements Serializable {
 	}
 
 	public void setTotal(double total) {
-		this.total = total;
+		DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance();
+		symbols.setDecimalSeparator('.');
+		DecimalFormat df = new DecimalFormat("#.##", symbols);
+		
+		this.total = Double.parseDouble(df.format(total));
 	}
 
 	public double getBuyingPrice() {
