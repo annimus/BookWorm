@@ -107,6 +107,14 @@ footer {
 	display: inline;
 }
 
+p.xLargeFont {
+	font-size: x-large;
+}
+
+p.largeFont {
+	font-size: large;
+}
+
 /**
 
 	Switch Toggle CSS
