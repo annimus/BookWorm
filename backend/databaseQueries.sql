@@ -3,7 +3,6 @@ CREATE TABLE genre(
 	id IDENTITY,
 	name VARCHAR(50),
 	description VARCHAR(255),
-	image_url VARCHAR(50),
 	is_active boolean,
 	
 	CONSTRAINT pk_genre_id PRIMARY KEY (id)
@@ -55,6 +54,8 @@ CREATE TABLE book(
 	purchases INT DEFAULT 0,
 	views INT DEFAULT 0,
 	isbn int,
+	rating DECIMAL(10,2),
+	rating_count INT,
 	
 	CONSTRAINT pk_book_id PRIMARY KEY (id),
 	CONSTRAINT fk_book_genre_id FOREIGN KEY (genre_id) REFERENCES genre (id),
@@ -88,6 +89,7 @@ CREATE TABLE address (
 	postal_code VARCHAR(10),
 	is_billing BOOLEAN,
 	is_shipping BOOLEAN,
+	
 	CONSTRAINT fk_address_user_id FOREIGN KEY (user_id ) REFERENCES user_detail (id),
 	CONSTRAINT pk_address_id PRIMARY KEY (id)
 );
@@ -101,6 +103,7 @@ CREATE TABLE cart (
 	user_id int,
 	grand_total DECIMAL(10,2),
 	cart_lines int,
+	
 	CONSTRAINT fk_cart_user_id FOREIGN KEY (user_id ) REFERENCES user_detail (id),
 	CONSTRAINT pk_cart_id PRIMARY KEY (id)
 );
@@ -120,4 +123,47 @@ CREATE TABLE cart_line (
 	CONSTRAINT fk_cartline_cart_id FOREIGN KEY (cart_id) REFERENCES cart (id),
 	CONSTRAINT fk_cartline_book_id FOREIGN KEY (book_id) REFERENCES book (id),
 	CONSTRAINT pk_cartline_id PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS book_review;
+CREATE TABLE book_review (
+	id IDENTITY,
+	book_id int,
+	user_name VARCHAR(100),
+	description VARCHAR(255),
+	rating DECIMAL(10,2),
+	review_date DATE,
+	
+	CONSTRAINT fk_review_book_id FOREIGN KEY (book_id) REFERENCES book (id),
+	CONSTRAINT pk_book_review_id PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS user_order;
+CREATE TABLE user_order (
+	id IDENTITY,
+	user_id int,
+	grand_total DECIMAL(10,2),
+	shipping_address_id int,
+	billing_address_id int,
+	condition VARCHAR(50),
+	order_date DATE,
+	
+	CONSTRAINT fk_order_user_id FOREIGN KEY (user_id) REFERENCES user_detail (id),
+	CONSTRAINT fk_shipping_address_id FOREIGN KEY (shipping_address_id) REFERENCES address (id),
+	CONSTRAINT fk_billing_address_id FOREIGN KEY (billing_address_id) REFERENCES address (id),
+	CONSTRAINT pk_user_order_id PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS order_item;
+CREATE TABLE order_item (
+	id IDENTITY,
+	order_id int,
+	book_id int,
+	book_count int,
+	buying_price DECIMAL(10,2),
+	total DECIMAL(10,2),
+	
+	CONSTRAINT fk_order_item_order_id FOREIGN KEY (order_id) REFERENCES user_order (id),
+	CONSTRAINT fk_order_item_book_id FOREIGN KEY (book_id) REFERENCES book (id),
+	CONSTRAINT pk_order_item_id PRIMARY KEY (id)
 );

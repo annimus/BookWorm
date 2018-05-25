@@ -29,7 +29,6 @@ public class GenreTestCase {
 		genre = new Genre();
 		genre.setName("Fantasy");
 		genre.setDescription("This is a fantasy genre.");
-		genre.setImageURL("CAT_1.png");
 		genre.setActive(true);
 		
 		Assert.assertEquals("Something went wrong while adding the genre.", true, genreDAO.add(genre));
@@ -37,7 +36,6 @@ public class GenreTestCase {
 		genre = new Genre();
 		genre.setName("Adventure");
 		genre.setDescription("This is a adventure genre.");
-		genre.setImageURL("CAT_2.png");
 		genre.setActive(true);
 		
 		Assert.assertEquals("Something went wrong while adding genre.", true, genreDAO.add(genre));

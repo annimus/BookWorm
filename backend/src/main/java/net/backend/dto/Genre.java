@@ -20,9 +20,6 @@ public class Genre {
 	@Column(name = "description")
 	private String description;
 
-	@Column(name = "image_url")
-	private String imageURL;
-
 	@Column(name = "is_active")
 	private boolean active = true;
 
@@ -51,14 +48,6 @@ public class Genre {
 		this.description = description;
 	}
 
-	public String getImageURL() {
-		return imageURL;
-	}
-
-	public void setImageURL(String imageURL) {
-		this.imageURL = imageURL;
-	}
-
 	public boolean isActive() {
 		return active;
 	}
@@ -69,8 +58,7 @@ public class Genre {
 
 	@Override
 	public String toString() {
-		return "Genre [id=" + id + ", name=" + name + ", description=" + description + ", imageURL=" + imageURL
-				+ ", active=" + active + "]";
+		return "Genre [id=" + id + ", name=" + name + ", description=" + description + ", active=" + active + "]";
 	}
 
 }

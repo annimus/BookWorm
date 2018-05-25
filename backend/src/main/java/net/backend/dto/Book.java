@@ -67,6 +67,12 @@ public class Book {
 	@Column(name = "isbn")
 	private int isbn;
 	
+	@Column(name = "rating")
+	private double rating;
+	
+	@Column(name = "rating_count")
+	private int ratingCount;
+	
 	@Transient
 	private MultipartFile file;
 
