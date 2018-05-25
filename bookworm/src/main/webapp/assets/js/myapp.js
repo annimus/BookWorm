@@ -1,32 +1,36 @@
 $(function() {
 	// Active Menu
-	switch (menu) {
-
-	case 'Home':
-		break;
-
-	case 'About Us!':
-		$('#about').addClass('active');
-		break;
-
-	case 'Contact Us!':
-		$('#contact').addClass('active');
-		break;
-
-	case 'Manage Books':
-		$('#manageBooks').addClass('active');
-		break;
-		
-	case 'Cart':
-		$('#userCart').addClass('active');
-		break;
-
-	// Highlights Our Collection in the navbar as well as highlights the genre
-	// in the sidebar
-	default:
-		$('#listBooks').addClass('active');
-		$('#a_' + menu).addClass('active');
-		break;
+	// if the menu conteins a ':', jquery will throw an error on $('#a_' + window.menu).addClass('active');
+	var substring = ":";
+	if (!window.menu.includes(substring)) {
+		switch (window.menu) {
+	
+		case 'Home':
+			break;
+	
+		case 'About Us!':
+			$('#about').addClass('active');
+			break;
+	
+		case 'Contact Us!':
+			$('#contact').addClass('active');
+			break;
+	
+		case 'Manage Books':
+			$('#manageBooks').addClass('active');
+			break;
+			
+		case 'Cart':
+			$('#userCart').addClass('active');
+			break;
+	
+		// Highlights Our Collection in the navbar as well as highlights the genre
+		// in the sidebar
+		default:
+			$('#listBooks').addClass('active');
+			$('#a_' + window.menu).addClass('active');
+			break;
+		}
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------------------------
