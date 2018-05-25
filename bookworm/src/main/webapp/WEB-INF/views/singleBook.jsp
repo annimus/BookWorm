@@ -34,7 +34,7 @@
 			<p>${book.description}</p>
 			<hr />
 			<div class="textInline">
-				<h3 class="textInline">Rating: 4.5<h2 class="textInline">/5</h2></h3>
+				<h3 class="textInline">Rating: ${book.rating}<h2 class="textInline">/5</h2></h3>
 			</div>
 			
 			<hr />

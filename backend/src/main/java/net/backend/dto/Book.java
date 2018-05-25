@@ -200,6 +200,22 @@ public class Book {
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
+	
+	public double getRating() {
+		return rating;
+	}
+
+	public void setRating(double rating) {
+		this.rating = rating;
+	}
+
+	public int getRatingCount() {
+		return ratingCount;
+	}
+
+	public void setRatingCount(int ratingCount) {
+		this.ratingCount = ratingCount;
+	}
 
 	@Override
 	public String toString() {
