@@ -1,4 +1,7 @@
 <div class="container">
+	<script>
+		window.bookId = '${book.id}';
+	</script>
 	<!-- Breadcrumb -->
 	<div class="row">
 		<div class="col-xs-12">
@@ -76,8 +79,33 @@
 						</a>
 			</security:authorize>
 			
-			</a> <a href="${contextRoot}/show/all/books" class="btn btn-primary">Back</a>
+			<a href="${contextRoot}/show/all/books" class="btn btn-primary">Back</a>
 
 		</div>
+	</div>
+	
+	<!-- Book Reviews Display -->
+	<div class="row">
+		<table class="table table-striped table-hover" id="reviewTable">
+			<caption class="reviewTable text-center">Reviews</caption>
+			
+			<thead>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			
+			<tfoot>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</tfoot>
+		</table>
 	</div>
 </div>

@@ -115,6 +115,12 @@ p.largeFont {
 	font-size: large;
 }
 
+caption.reviewTable {
+	font-size: xx-large;
+	font-weight: bold;
+	color: #157ab5;
+}
+
 /**
 
 	Switch Toggle CSS

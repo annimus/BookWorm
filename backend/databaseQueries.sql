@@ -8,9 +8,9 @@ CREATE TABLE genre(
 	CONSTRAINT pk_genre_id PRIMARY KEY (id)
 );
 
-INSERT INTO genre (name, description, image_url, is_active) VALUES ('Mythology', 'This is a Mythology genre', 'CAT_1.png', true);
-INSERT INTO genre (name, description, image_url, is_active) VALUES ('Fantasy', 'This is a Fantasy genre', 'CAT_2.png', true);
-INSERT INTO genre (name, description, image_url, is_active) VALUES ('Romance', 'This is a Romance genre', 'CAT_3.png', true);
+INSERT INTO genre (name, description, is_active) VALUES ('Mythology', 'This is a Mythology genre', true);
+INSERT INTO genre (name, description, is_active) VALUES ('Fantasy', 'This is a Fantasy genre', true);
+INSERT INTO genre (name, description, is_active) VALUES ('Romance', 'This is a Romance genre', true);
 
 DROP TABLE IF EXISTS user_detail;
 CREATE TABLE user_detail(
@@ -63,19 +63,19 @@ CREATE TABLE book(
 );
 
 INSERT INTO book (code, name, publisher, author, description, unit_price, quantity, is_active, 
-	genre_id, supplier_id, purchases, views, isbn)
+	genre_id, supplier_id, purchases, views, isbn, rating, rating_count)
 	VALUES ('PAZASDASDFAZXX12', 'The Fellowship of The Ring', 'Mariner Books', 'J.R.R. Tolkien', 'Fellowship of The Ring, first book in the Lord of The Rings Trilogy',
-		13.49, 1337, true, 2, 1, 0, 0, 0547928211);
+		13.49, 1337, true, 2, 1, 0, 0, 0547928211, 4.5, 2000);
 		
 INSERT INTO book (code, name, publisher, author, description, unit_price, quantity, is_active, 
-	genre_id, supplier_id, purchases, views, isbn)
+	genre_id, supplier_id, purchases, views, isbn, rating, rating_count)
 	VALUES ('PAZASDASDFAZXX13', 'Ready Player One: A Novel', 'Broadway Books', 'Ernest Cline', 'In the year 2045, reality is an ugly place. The only time teenage Wade Watts really feels alive is when he is jacked into the virtual utopia known as the OASIS',
-		15.90, 1999, true, 3, 3, 0, 0, 0307887448);
+		15.90, 1999, true, 3, 3, 0, 0, 0307887448, 3.5, 164);
 		
 INSERT INTO book (code, name, publisher, author, description, unit_price, quantity, is_active, 
-	genre_id, supplier_id, purchases, views, isbn)
+	genre_id, supplier_id, purchases, views, isbn, rating, rating_count)
 	VALUES ('PAZASDASDFAZXX14', 'Iron and Magic', 'NYLA', 'Ilona Andrews', 'Iron and Magic is first book in the Iron Covenant Series',
-		6.89, 0, true, 3, 2, 0, 0, 0107897448);
+		6.89, 0, true, 3, 2, 0, 0, 0107897448, 3.0, 856);
 		
 DROP TABLE IF EXISTS address;
 CREATE TABLE address (
@@ -131,12 +131,15 @@ CREATE TABLE book_review (
 	book_id int,
 	user_name VARCHAR(100),
 	description VARCHAR(255),
-	rating DECIMAL(10,2),
-	review_date DATE,
+	rating DECIMAL(10,1),
+	review_date TIMESTAMP,
 	
 	CONSTRAINT fk_review_book_id FOREIGN KEY (book_id) REFERENCES book (id),
 	CONSTRAINT pk_book_review_id PRIMARY KEY (id)
 );
+
+insert into book_review (book_id, user_name, description, rating, review_date) VALUES (1, 'Guilherme Ferreira', 'Awesome!', 4.5, CURRENT_TIMESTAMP());
+insert into book_review (book_id, user_name, description, rating, review_date) VALUES (1, 'Rodrigo "Justin"', 'AUSDHAUISHDIAUHSDUIAHDIUAHSDIUAHSIUDHAUISDHAIUHDUIAHSD IUAHDUAHDIUAHSUID AUDH AUD HUIAH DUIAHSDIUAHSIUD AUISDH AIDHSIA!', 3.5, CURRENT_TIMESTAMP());
 
 DROP TABLE IF EXISTS user_order;
 CREATE TABLE user_order (

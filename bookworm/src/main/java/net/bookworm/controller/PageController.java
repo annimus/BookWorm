@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.backend.dao.BookDAO;
+import net.backend.dao.BookReviewDAO;
 import net.backend.dao.GenreDAO;
 import net.backend.dto.Book;
 import net.backend.dto.Genre;
@@ -31,6 +32,9 @@ public class PageController {
 
 	@Autowired
 	private BookDAO bookDAO;
+	
+	@Autowired
+	private BookReviewDAO bookReviewDAO;
 
 	// Home
 	@RequestMapping(value = { "/", "/home", "/index" })
@@ -113,6 +117,7 @@ public class PageController {
 		mv.addObject("title", book.getName());
 		mv.addObject("book", book);
 		mv.addObject("userClickShowBook", true);
+		mv.addObject("reviews", bookReviewDAO.listByBook(book.getId()));
 
 		return mv;
 	}
