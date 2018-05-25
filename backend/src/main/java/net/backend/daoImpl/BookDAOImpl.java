@@ -94,4 +94,16 @@ public class BookDAOImpl implements BookDAO {
 				.setFirstResult(0).setMaxResults(count).getResultList();
 	}
 
+	@Override
+	public void addRating(Book book, double rating) {
+		double currentRating = book.getRating();
+		int currentRatingCount = book.getRatingCount();
+		double newRating = ((currentRating * currentRatingCount) + rating) / (currentRatingCount + 1);
+		
+		book.setRating(newRating);
+		book.setRatingCount(currentRatingCount + 1);
+		
+		this.update(book);
+	}
+
 }

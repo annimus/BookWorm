@@ -361,6 +361,46 @@ $(function() {
 	// -------------------------------------------------------------------------------------------------------------------------------------
 	
 	// -------------------------------------------------------------------------------------------------------------------------------------
+	// Validation Code for Review Submission
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	var $bookReviewForm = $('#bookReviewForm');
+	
+	if ($bookReviewForm.length) {
+		$bookReviewForm.validate({
+			rules : {
+				description : {
+					required: true,
+				},
+				
+				rating: {
+					required: true
+				}
+			},
+			
+			messages : {
+				description : {
+					required: 'Please write a small review for this book.'
+				},
+				
+				rating: {
+					required: 'Please enter your rating for this book.'
+				}
+			},
+			
+			errorElement: 'em',
+			errorPlacement: function(error, element) {
+				error.addClass('help-block');
+				
+				// adds the error element after the input element
+				error.insertAfter(element);
+			}
+		});
+	}
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	// End Validation Code for Review Submission
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	
+	// -------------------------------------------------------------------------------------------------------------------------------------
 	// Handling Refresh CartLine Button Event
 	// -------------------------------------------------------------------------------------------------------------------------------------
 	$('button[name="refreshCart"').click(function() {
@@ -409,16 +449,16 @@ $(function() {
 			},
 			columns: [
 			          
-			          {
-			        	  data: 'userName',
-			        	  bSortable : false
-			          },
+					  {
+						  data: 'rating'
+					  },	
 			          {
 			        	  data: 'description',
 			        	  bSortable : false
 			          },
 			          {
-			        	  data: 'rating'
+			        	  data: 'userName',
+			        	  bSortable : false
 			          },
 			          {
 			        	  data: 'reviewDate'

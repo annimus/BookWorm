@@ -1,3 +1,5 @@
+<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+
 <div class="container">
 	<script>
 		window.bookId = '${book.id}';
@@ -7,7 +9,7 @@
 		<div class="col-xs-12">
 			<ol class="breadcrumb">
 				<li><a href="${contextRoot}/home">Home</a></li>
-				<li><a href="${contextRoot}/show/all/books">Books</a></li>
+				<li><a href="${contextRoot}/show/all/books">All Books</a></li>
 				<li class="active">${book.name}</li>
 			</ol>
 		</div>
@@ -37,9 +39,19 @@
 			<p>${book.description}</p>
 			<hr />
 			<div class="textInline">
-				<h3 class="textInline">Rating: ${book.rating}<h2 class="textInline">/5</h2></h3>
+				<h3 class="textInline">
+					Rating: ${book.rating}
+					<h2 class="textInline">/5</h2>
+				</h3>
 			</div>
-			
+			<security:authorize access="hasAuthority('USER')">
+				<br />
+				<br />
+				<button type="button" data-toggle="modal"
+					data-target="#submitReviewModal" class="btn btn-info">Write
+					a Review!</button>
+			</security:authorize>
+
 			<hr />
 			<h4>
 				Price: <strong> &#36; ${book.unitPrice}</strong>
@@ -61,34 +73,39 @@
 			<security:authorize access="hasAuthority('USER')">
 				<c:choose>
 					<c:when test="${book.quantity < 1}">
-						<a href="javascript:void(0)" class="btn btn-success disabled"> 
-							<span class="glyphicon glyphicon-shopping-cart strikethrough">Add to Cart</span>
+						<a href="javascript:void(0)" class="btn btn-success disabled">
+							<span class="glyphicon glyphicon-shopping-cart strikethrough">Add
+								to Cart</span>
 						</a>
 					</c:when>
 					<c:otherwise>
-						<a href="${contextRoot}/cart/add/${book.id}/book" class="btn btn-success"> 
-							<span class="glyphicon glyphicon-shopping-cart">Add to Cart</span>
+						<a href="${contextRoot}/cart/add/${book.id}/book"
+							class="btn btn-success"> <span
+							class="glyphicon glyphicon-shopping-cart">Add to Cart</span>
 						</a>
 					</c:otherwise>
 				</c:choose>
 			</security:authorize>
-			
+
 			<security:authorize access="hasAuthority('ADMIN')">
-				<a href="${contextRoot}/manage/${book.id}/book" class="btn btn-warning"> 
-							<span class="glyphicon glyphicon-pencil">Edit</span>
-						</a>
+				<a href="${contextRoot}/manage/${book.id}/book"
+					class="btn btn-warning"> <span
+					class="glyphicon glyphicon-pencil">Edit</span>
+				</a>
 			</security:authorize>
-			
+
 			<a href="${contextRoot}/show/all/books" class="btn btn-primary">Back</a>
 
 		</div>
 	</div>
 	
+	<hr />
+
 	<!-- Book Reviews Display -->
 	<div class="row">
 		<table class="table table-striped table-hover" id="reviewTable">
 			<caption class="reviewTable text-center">Reviews</caption>
-			
+
 			<thead>
 				<tr>
 					<th></th>
@@ -97,7 +114,7 @@
 					<th></th>
 				</tr>
 			</thead>
-			
+
 			<tfoot>
 				<tr>
 					<th></th>
@@ -107,5 +124,62 @@
 				</tr>
 			</tfoot>
 		</table>
+	</div>
+
+	<div class="modal fade" id="submitReviewModal" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+					<h4 class="modal-title">Write a review for: ${book.name}</h4>
+				</div>
+				
+				<!-- Modal Body -->
+				<div class="modal-body">
+					<!-- Review Submission Form -->
+					<sf:form id="bookReviewForm" modelAttribute="bookReview" action="${contextRoot}/review/book/${book.id}/submit"
+						method="POST" class="form-horizontal">
+						
+						<div class="form-group">
+							<label for="userName" class="control-label col-md-4">User: </label>
+							<div class="col-md-8">
+								<sf:input type="text" path="userName" id="userName" value="${userModel.fullName}" readonly="true" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="description" class="control-label col-md-4">Tell us what do you think about this book: </label>
+							<div class="col-md-8">
+								<sf:textarea path="description" id="description" rows="4"
+									placeholder="Write a small review for the book."
+									class="form-control"></sf:textarea>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="rating" class="control-label col-md-4">Rating:</label>
+							<div class="col-md-8">
+								<sf:input type="number" path="rating" class="form-control" min="0" max="5" step="0.5"
+									value="2.5" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-md-offset-4 col-md-8">
+								<input type="submit" value="Submit Review" class="btn btn-success" />
+							</div>
+						</div>
+						
+						<!-- Hidden Fields -->
+						<sf:hidden path="id" />
+						<sf:hidden path="bookId" />
+						
+					</sf:form>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

@@ -1,5 +1,7 @@
 package net.bookworm.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,8 +12,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,6 +23,7 @@ import net.backend.dao.BookDAO;
 import net.backend.dao.BookReviewDAO;
 import net.backend.dao.GenreDAO;
 import net.backend.dto.Book;
+import net.backend.dto.BookReview;
 import net.backend.dto.Genre;
 import net.bookworm.exception.BookNotFoundException;
 
@@ -161,5 +166,23 @@ public class PageController {
 		}
 		
 		return "redirect:/login?logout";
+	}
+	
+	// Handles Book Review Submission
+	@RequestMapping(value = "/review/book/{id}/submit", method = RequestMethod.POST)
+	public String bookReviewSubmissionHandler(@ModelAttribute BookReview bookReview, @PathVariable int id) {
+		bookReview.setBookId(id);
+		bookReview.setReviewDate(new Date());
+		
+		bookReviewDAO.add(bookReview);
+		bookDAO.addRating(bookDAO.get(id), bookReview.getRating());
+		
+		return "redirect:/show/" + id + "/book";
+	}
+	
+	// Returns a new Review for submission
+	@ModelAttribute("bookReview")
+	public BookReview getBookReview() {
+		return new BookReview();
 	}
 }

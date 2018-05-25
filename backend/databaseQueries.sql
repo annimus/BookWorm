@@ -27,7 +27,7 @@ CREATE TABLE user_detail(
 );
 
 INSERT INTO user_detail (first_name, last_name, role, enabled, password, email, contact_number)
-	VALUES ('Admin', 'ADmin', 'ADMIN', true, '$2b$10$HDAdKby.Ay0LWR2zFddOX.OVkbjU4cImh2P/QQ2MFgR23wQg86cFW', 'admin@bookworm.com', '99999999');
+	VALUES ('Admin', '', 'ADMIN', true, '$2a$10$/49njYY8gF5Y0Aop1h21yOfoOGge4KLLoVHMVcOO2zl6tqr299J6y', 'admin@bookworm.com', '99999999');
 	
 INSERT INTO user_detail (first_name, last_name, role, enabled, password, email, contact_number)
 	VALUES ('Ingram Content Group Inc.', '', 'SUPPLIER', true, '$2b$10$mTAp1YVYgECAUXqH5hqeyuW6PrywRbuWN0.CSkUSI4ADUChtVl7Fy', 'contact@ingram.com', '88888888');
@@ -54,7 +54,7 @@ CREATE TABLE book(
 	purchases INT DEFAULT 0,
 	views INT DEFAULT 0,
 	isbn int,
-	rating DECIMAL(10,2),
+	rating DECIMAL(10,1),
 	rating_count INT,
 	
 	CONSTRAINT pk_book_id PRIMARY KEY (id),
@@ -65,17 +65,17 @@ CREATE TABLE book(
 INSERT INTO book (code, name, publisher, author, description, unit_price, quantity, is_active, 
 	genre_id, supplier_id, purchases, views, isbn, rating, rating_count)
 	VALUES ('PAZASDASDFAZXX12', 'The Fellowship of The Ring', 'Mariner Books', 'J.R.R. Tolkien', 'Fellowship of The Ring, first book in the Lord of The Rings Trilogy',
-		13.49, 1337, true, 2, 1, 0, 0, 0547928211, 4.5, 2000);
+		13.49, 1337, true, 2, 1, 0, 0, 0547928211, 0.0, 0);
 		
 INSERT INTO book (code, name, publisher, author, description, unit_price, quantity, is_active, 
 	genre_id, supplier_id, purchases, views, isbn, rating, rating_count)
 	VALUES ('PAZASDASDFAZXX13', 'Ready Player One: A Novel', 'Broadway Books', 'Ernest Cline', 'In the year 2045, reality is an ugly place. The only time teenage Wade Watts really feels alive is when he is jacked into the virtual utopia known as the OASIS',
-		15.90, 1999, true, 3, 3, 0, 0, 0307887448, 3.5, 164);
+		15.90, 1999, true, 3, 3, 0, 0, 0307887448, 0.0, 0);
 		
 INSERT INTO book (code, name, publisher, author, description, unit_price, quantity, is_active, 
 	genre_id, supplier_id, purchases, views, isbn, rating, rating_count)
 	VALUES ('PAZASDASDFAZXX14', 'Iron and Magic', 'NYLA', 'Ilona Andrews', 'Iron and Magic is first book in the Iron Covenant Series',
-		6.89, 0, true, 3, 2, 0, 0, 0107897448, 3.0, 856);
+		6.89, 0, true, 3, 2, 0, 0, 0107897448, 0.0, 0);
 		
 DROP TABLE IF EXISTS address;
 CREATE TABLE address (
