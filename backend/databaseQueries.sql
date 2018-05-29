@@ -36,7 +36,7 @@ INSERT INTO user_detail (first_name, last_name, role, enabled, password, email, 
 	VALUES ('Independent Publishers Group', '', 'SUPPLIER', true, '$2b$10$mTAp1YVYgECAUXqH5hqeyuW6PrywRbuWN0.CSkUSI4ADUChtVl7Fy', 'contact@ipg.com', '77777777');
 	
 INSERT INTO user_detail (first_name, last_name, role, enabled, password, email, contact_number)
-	VALUES ('User', 'User', 'USER', true, '$2b$10$ZIISA77JAMrVgdjQKoeotuV0Ohkfaa0lddNzAyDjAosqwc7xJBKJ.', 'user@bookworm.com', '77777777');
+	VALUES ('User', '', 'USER', true, '$2a$10$4i6FWwsgX2jNnoDxsDUH5.9g9P3UJwx1zlmWUTFWeOEwuER12xCMW', 'user@bookworm.com', '77 77777-7777');
 	
 DROP TABLE IF EXISTS book;
 CREATE TABLE book(
@@ -108,7 +108,7 @@ CREATE TABLE cart (
 	CONSTRAINT pk_cart_id PRIMARY KEY (id)
 );
 
-INSERT INTO cart (user_id, grand_total, cart_lines) VALUES (4, 199, 2);
+INSERT INTO cart (user_id, grand_total, cart_lines) VALUES (4, 0.0, 0);
 
 DROP TABLE IF EXISTS cart_line;
 CREATE TABLE cart_line (
@@ -137,9 +137,6 @@ CREATE TABLE book_review (
 	CONSTRAINT fk_review_book_id FOREIGN KEY (book_id) REFERENCES book (id),
 	CONSTRAINT pk_book_review_id PRIMARY KEY (id)
 );
-
-insert into book_review (book_id, user_name, description, rating, review_date) VALUES (1, 'Guilherme Ferreira', 'Awesome!', 4.5, CURRENT_TIMESTAMP());
-insert into book_review (book_id, user_name, description, rating, review_date) VALUES (1, 'Rodrigo "Justin"', 'AUSDHAUISHDIAUHSDUIAHDIUAHSDIUAHSIUDHAUISDHAIUHDUIAHSD IUAHDUAHDIUAHSUID AUDH AUD HUIAH DUIAHSDIUAHSIUD AUISDH AIDHSIA!', 3.5, CURRENT_TIMESTAMP());
 
 DROP TABLE IF EXISTS user_order;
 CREATE TABLE user_order (
