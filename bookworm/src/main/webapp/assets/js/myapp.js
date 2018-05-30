@@ -20,6 +20,10 @@ $(function() {
 			$('#manageBooks').addClass('active');
 			break;
 			
+		case 'Manage Genres':
+			$('#manageGenres').addClass('active');
+			break;
+			
 		case 'Cart':
 			$('#userCart').addClass('active');
 			break;
@@ -69,7 +73,7 @@ $(function() {
 
 		$table.DataTable({
 				lengthMenu : [ [ 10, 25, 50, -1 ], [ '10', '25', '50', 'All' ] ],
-				pageLength : 5,
+				pageLength : 25,
 				ajax : {
 					url : jsonURL,
 					dataSrc : ''
@@ -279,6 +283,108 @@ $(function() {
 						}
 			});
 	}
+	
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	// Code for Genre Admin Table
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	
+	var $adminGenresTable = $('#adminGenresTable');
+
+	// Execute this code only where we have the table
+	if ($adminGenresTable.length) {
+		var jsonURL = window.contextRoot + '/json/data/admin/all/genres';
+
+		$adminGenresTable.DataTable({
+				lengthMenu : [ [ 10, 25, 50, -1 ], [ '10', '25', '50', 'All' ] ],
+				pageLength : 10,
+				ajax : {
+					url : jsonURL,
+					dataSrc : ''
+				},
+				columns : [
+				        {
+				        	data : 'id'
+				        },
+						{
+							data : 'name'
+						},
+						{
+							data : 'description',
+							bSortable : false
+						},
+						{
+							data : 'active',
+							bSortable : false,
+							mRender : function(data, type, row) {
+								var str = '';
+								str += '<label class="switch">';
+								
+								if (data) {
+									str += '<input type="checkbox" checked="checked" value="' + row.id + '"/>';
+								} else {
+									str += '<input type="checkbox" value="' + row.id + '"/>';
+								}
+								
+								str += '<div class="slider"></div>';
+								str += '</label>';
+								
+								return str;
+							}
+							
+						},
+						{
+							data : 'id',
+							bSortable : false,
+							mRender : function(data, type, row) {
+								var str = '';
+								str += '<a href="' + window.contextRoot + '/manage/' + data + '/genre" class = "btn btn-warning">';
+								str += '<span class="glyphicon glyphicon-pencil"></span> </a>';
+								
+								return str;
+							}
+						}],
+						
+						initComplete: function() {
+							var api = this.api();
+							
+							// Switch Toggle
+							api.$('.switch input[type="checkbox"]').on('change', function() {
+								var checkbox = $(this);
+								var checked = checkbox.prop('checked');
+								var dMessage = (checked) ? 'Do you wish to activate this book?' :
+														   'Do you wish to deactivate this book?';
+								var value = checkbox.prop('value');
+
+								bootbox.confirm({
+											size : 'medium',
+											title : 'Book Activation & Deactivation',
+											message : dMessage,
+											callback : function(confirmed) {
+												if (confirmed) {
+													var activationGenreURL = window.contextRoot + '/manage/genre/' + value + '/activation';
+													
+													$.post(activationGenreURL, function(data) {
+														bootbox.alert({
+															size : 'medium',
+															title : 'Success',
+															message : data
+														});
+													});
+													
+												} else {
+													checkbox.prop('checked', !checked);
+												}
+											}
+										});
+
+							});
+						}
+			});
+	}
+	
+	// -------------------------------------------------------------------------------------------------------------------------------------
+	// Code for Genre Admin Table
+	// -------------------------------------------------------------------------------------------------------------------------------------
 	
 	// -------------------------------------------------------------------------------------------------------------------------------------
 	// Validation Code for Genre

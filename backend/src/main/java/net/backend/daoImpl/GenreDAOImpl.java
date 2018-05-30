@@ -15,62 +15,72 @@ import net.backend.dto.Genre;
 @Transactional
 public class GenreDAOImpl implements GenreDAO {
 
-	@Autowired
-	private SessionFactory sessionFactory;
+    @Autowired
+    private SessionFactory sessionFactory;
 
-	// Dummy data for tests
+    @Override
+    public List<Genre> list() {
+	String query = "FROM Genre";
 
-	@Override
-	public List<Genre> list() {
-		String selectActiveGenre = "FROM Genre WHERE active = :active";
-		Query query = sessionFactory.getCurrentSession().createQuery(selectActiveGenre);
-		
-		query.setParameter("active", true);
-		
-		return query.getResultList();
+	try {
+	    return sessionFactory.getCurrentSession().createQuery(query, Genre.class).getResultList();
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return null;
 	}
+    }
 
-	@Override
-	public Genre get(int id) {
-		return sessionFactory.getCurrentSession().get(Genre.class, Integer.valueOf(id));
+    @Override
+    public List<Genre> listActiveGenres() {
+	String selectActiveGenre = "FROM Genre WHERE active = :active";
+	Query query = sessionFactory.getCurrentSession().createQuery(selectActiveGenre);
+
+	query.setParameter("active", true);
+
+	return query.getResultList();
+    }
+
+    @Override
+    public Genre get(int id) {
+	return sessionFactory.getCurrentSession().get(Genre.class, Integer.valueOf(id));
+    }
+
+    @Override
+    public boolean add(Genre genre) {
+
+	try {
+	    // Adds the genre to the database
+	    sessionFactory.getCurrentSession().persist(genre);
+	    return true;
+
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return false;
 	}
+    }
 
-	@Override
-	public boolean add(Genre genre) {
-
-		try {
-			// Adds the genre to the database
-			sessionFactory.getCurrentSession().persist(genre);
-			return true;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+    @Override
+    public boolean update(Genre genre) {
+	try {
+	    sessionFactory.getCurrentSession().update(genre);
+	    return true;
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return false;
 	}
+    }
 
-	@Override
-	public boolean update(Genre genre) {
-		try {
-			sessionFactory.getCurrentSession().update(genre);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+    @Override
+    public boolean delete(Genre genre) {
+	genre.setActive(false);
+
+	try {
+	    sessionFactory.getCurrentSession().update(genre);
+	    return true;
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return false;
 	}
-
-	@Override
-	public boolean delete(Genre genre) {
-		genre.setActive(false);
-
-		try {
-			sessionFactory.getCurrentSession().update(genre);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
+    }
 
 }

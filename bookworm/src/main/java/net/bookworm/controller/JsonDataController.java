@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.backend.dao.BookDAO;
 import net.backend.dao.BookReviewDAO;
+import net.backend.dao.GenreDAO;
 import net.backend.dto.Book;
 import net.backend.dto.BookReview;
+import net.backend.dto.Genre;
 
 @Controller
 @RequestMapping("/json/data")
@@ -22,6 +24,8 @@ public class JsonDataController {
 	
 	@Autowired
 	private BookReviewDAO bookReviewDAO;
+	
+	@Autowired GenreDAO genreDAO;
 	
 	@RequestMapping("/all/books")
 	@ResponseBody
@@ -45,5 +49,11 @@ public class JsonDataController {
 	@ResponseBody
 	public List<BookReview> getBookReview(@PathVariable int id) {
 		return bookReviewDAO.listByBook(id);
+	}
+	
+	@RequestMapping("/admin/all/genres")
+	@ResponseBody
+	public  List<Genre> getAllGenres() {
+	    return genreDAO.list();
 	}
 }

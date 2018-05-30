@@ -44,7 +44,7 @@ public class Book {
 	@Column(name = "unit_price")
 	private double unitPrice;
 
-	@Min(value = 0)
+	@Min(value = 0, message="Book quantity can't be less than 0.")
 	@Column(name = "quantity")
 	private int quantity;
 

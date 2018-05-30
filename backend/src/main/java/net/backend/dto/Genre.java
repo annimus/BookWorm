@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 public class Genre {
 
@@ -14,9 +16,11 @@ public class Genre {
 	@Column(name = "id")
 	private int id;
 
+	@NotBlank(message = "Please enter the genre name.")
 	@Column(name = "name")
 	private String name;
 
+	@NotBlank(message = "Please enter a short description for the genre.")
 	@Column(name = "description")
 	private String description;
 

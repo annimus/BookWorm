@@ -51,7 +51,7 @@ public class PageController {
 
 		mv.addObject("title", "Home");
 		mv.addObject("userClickHome", true);
-		mv.addObject("genres", genreDAO.list());
+		mv.addObject("genres", genreDAO.listActiveGenres());
 
 		return mv;
 	}
@@ -85,7 +85,7 @@ public class PageController {
 
 		mv.addObject("title", "All Books");
 		mv.addObject("userClickAllBooks", true);
-		mv.addObject("genres", genreDAO.list());
+		mv.addObject("genres", genreDAO.listActiveGenres());
 
 		return mv;
 	}
@@ -98,7 +98,7 @@ public class PageController {
 
 		mv.addObject("title", genre.getName());
 		mv.addObject("userClickGenreBooks", true);
-		mv.addObject("genres", genreDAO.list());
+		mv.addObject("genres", genreDAO.listActiveGenres());
 		mv.addObject("genre", genre);
 
 		return mv;

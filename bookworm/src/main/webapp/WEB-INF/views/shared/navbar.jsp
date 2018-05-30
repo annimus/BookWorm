@@ -23,6 +23,9 @@
 				<security:authorize access="hasAuthority('ADMIN')">
 					<li id="manageBooks"><a href="${contextRoot}/manage/books">Manage Books</a></li>
 				</security:authorize>
+				<security:authorize access="hasAuthority('ADMIN')">
+					<li id="manageGenres"><a href="${contextRoot}/manage/genres">Manage Genres</a></li>
+				</security:authorize>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<security:authorize access="isAnonymous()">

@@ -147,6 +147,9 @@
 						<sf:hidden path="active" />
 						<sf:hidden path="purchases" />
 						<sf:hidden path="views" />
+						<sf:hidden path="isbn" />
+						<sf:hidden path="rating" />
+						<sf:hidden path="ratingCount" />
 					</sf:form>
 				</div>
 			</div>

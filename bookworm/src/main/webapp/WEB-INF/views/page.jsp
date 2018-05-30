@@ -88,6 +88,11 @@
 				<%@include file="manageBooks.jsp"%>
 			</c:if>
 			
+			<!-- Manage Genres -->
+			<c:if test="${userClickManageGenres == true}">
+				<%@include file="manageGenres.jsp"%>
+			</c:if>
+			
 			<!-- Show Cart -->
 			<c:if test="${userClickShowCart == true}">
 				<%@include file="cart.jsp"%>

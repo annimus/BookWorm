@@ -6,7 +6,8 @@ import net.backend.dto.Genre;
 
 public interface GenreDAO {
 
-	List<Genre> list();
+    	List<Genre> list();
+	List<Genre> listActiveGenres();
 	Genre get(int id);
 	boolean add(Genre genre);
 	boolean update(Genre genre);
