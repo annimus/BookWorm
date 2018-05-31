@@ -351,13 +351,13 @@ $(function() {
 							api.$('.switch input[type="checkbox"]').on('change', function() {
 								var checkbox = $(this);
 								var checked = checkbox.prop('checked');
-								var dMessage = (checked) ? 'Do you wish to activate this book?' :
-														   'Do you wish to deactivate this book?';
+								var dMessage = (checked) ? 'Do you wish to activate this genre?' :
+														   'Do you wish to deactivate this genre?';
 								var value = checkbox.prop('value');
 
 								bootbox.confirm({
 											size : 'medium',
-											title : 'Book Activation & Deactivation',
+											title : 'Genre Activation & Deactivation',
 											message : dMessage,
 											callback : function(confirmed) {
 												if (confirmed) {
