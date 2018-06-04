@@ -33,7 +33,7 @@ public class GenreDAOImpl implements GenreDAO {
     @Override
     public List<Genre> listActiveGenres() {
 	String selectActiveGenre = "FROM Genre WHERE active = :active";
-	Query query = sessionFactory.getCurrentSession().createQuery(selectActiveGenre);
+	Query<Genre> query = sessionFactory.getCurrentSession().createQuery(selectActiveGenre, Genre.class);
 
 	query.setParameter("active", true);
 
