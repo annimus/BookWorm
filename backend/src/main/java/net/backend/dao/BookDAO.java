@@ -16,5 +16,6 @@ public interface BookDAO {
 	List<Book> listActiveBooks();
 	List<Book> listActiveBooksByGenre(int genreId);
 	List<Book> getLatestActiveBooks(int count);
+	List<Book> getBestSellers(int count);
 	void addRating(Book book, double rating);
 }

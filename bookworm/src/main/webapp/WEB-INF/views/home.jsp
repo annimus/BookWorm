@@ -26,18 +26,68 @@
 						<div class="carousel-inner">
 							<!-- TODO Change this 3 div's to c:forEach. Create a CSS class to display the image in a vertical way. -->
 							<!-- TODO Create a method to return the 3 latests books in promotion. Add a promotion and discount fields in book -->
+							
+							
 							<div class="item active">
-								<img class="slide-image" src="http://placehold.it/800x300"
-									alt="">
+								<div class="col-md-4">
+									<a href="${contextRoot}/show/${carousel_item_1.id}/book">
+										<img class="slide_image carouselImg" src="${images}/${carousel_item_1.code}.jpg"
+										alt="${carousel_item_1.name}">
+									</a>
+								</div>
+								<div class="col-md-8">
+									<a href="${contextRoot}/show/${carousel_item_1.id}/book">
+										<h2>${carousel_item_1.name}</h2>
+									</a>
+									<h3>By: ${carousel_item_1.author}</h3>
+									<p class="largeFont textInline">
+										Rating: ${carousel_item_1.rating}<font class="textInline xLargeFont">/5</font>
+										<br/>
+										Price: &#36;${carousel_item_1.unitPrice}
+									</p>
+								</div>
 							</div>
+							
 							<div class="item">
-								<img class="slide-image" src="http://placehold.it/800x300"
-									alt="">
+								<div class="col-md-4">
+									<a href="${contextRoot}/show/${carousel_item_2.id}/book">
+										<img class="slide_image carouselImg" src="${images}/${carousel_item_2.code}.jpg"
+										alt="${carousel_item_2.name}">
+									</a>
+								</div>
+								<div class="col-md-8">
+									<a href="${contextRoot}/show/${carousel_item_2.id}/book">
+										<h2>${carousel_item_2.name}</h2>
+									</a>
+									<h3>By: ${carousel_item_2.author}</h3>
+									<p class="largeFont textInline">
+										Rating: ${carousel_item_2.rating}<font class="textInline xLargeFont">/5</font>
+										<br/>
+										Price: &#36;${carousel_item_2.unitPrice}
+									</p>
+								</div>
 							</div>
+							
 							<div class="item">
-								<img class="slide-image" src="http://placehold.it/800x300"
-									alt="">
+								<div class="col-md-4">
+									<a href="${contextRoot}/show/${carousel_item_3.id}/book">
+										<img class="slide_image carouselImg" src="${images}/${carousel_item_3.code}.jpg"
+										alt="${carousel_item_3.name}">
+									</a>
+								</div>
+								<div class="col-md-8">
+									<a href="${contextRoot}/show/${carousel_item_3.id}/book">
+										<h2>${carousel_item_3.name}</h2>
+									</a>
+									<h3>By: ${carousel_item_3.author}</h3>
+									<p class="largeFont textInline">
+										Rating: ${carousel_item_3.rating}<font class="textInline xLargeFont">/5</font>
+										<br/>
+										Price: &#36;${carousel_item_3.unitPrice}
+									</p>
+								</div>
 							</div>
+							
 						</div>
 						<a class="left carousel-control" href="#carousel-example-generic"
 							data-slide="prev"> <span
@@ -56,126 +106,25 @@
 				<h3>Our Best Sellers:</h3>
 				<br />
 				<!-- TODO Change this 5 div's to c:forEach. Create a method to return the 6 most sold books.  -->
-				<div class="col-sm-4 col-lg-4 col-md-4">
-					<div class="thumbnail">
-						<img src="http://placehold.it/320x150" alt="">
+				<c:forEach items="${bestSellerList}" var="bestSellerItem">
+					<div class="col-sm-4 col-lg-4 col-md-4">
+						<a href="${contextRoot}/show/${bestSellerItem.id}/book">
+							<img class="img-responsive bestSellerImg" src="${images}/${bestSellerItem.code}.jpg" alt="${bestSellerItem.name}">
+						</a>
 						<div class="caption">
-							<h4 class="pull-right">$24.99</h4>
 							<h4>
-								<a href="#">First Product</a>
+								<a href="${contextRoot}/show/${bestSellerItem.id}/book">${bestSellerItem.name}</a>
 							</h4>
-							<p>Author: Author</p>
-							<p>Publisher: Publisher</p>
+							<h4>$24.99</h4>
+							<p>By: ${bestSellerItem.author}</p>
+							<p>Publisher: ${bestSellerItem.publisher}</p>
 						</div>
 						<div class="ratings">
-							<p class="pull-right">15 reviews</p>
-							<p>
-								<span class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span>
-							</p>
+							<p class="pull-right">${bestSellerItem.ratingCount} Reviews</p>
+							<p>Rating: ${bestSellerItem.rating}<strong class="largeFont">/5</strong></p>
 						</div>
 					</div>
-				</div>
-
-				<div class="col-sm-4 col-lg-4 col-md-4">
-					<div class="thumbnail">
-						<img src="http://placehold.it/320x150" alt="">
-						<div class="caption">
-							<h4 class="pull-right">$64.99</h4>
-							<h4>
-								<a href="#">Second Product</a>
-							</h4>
-							<p>Author: Author</p>
-							<p>Publisher: Publisher</p>
-						</div>
-						<div class="ratings">
-							<p class="pull-right">12 reviews</p>
-							<p>
-								<span class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star-empty"></span>
-							</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-4 col-lg-4 col-md-4">
-					<div class="thumbnail">
-						<img src="http://placehold.it/320x150" alt="">
-						<div class="caption">
-							<h4 class="pull-right">$74.99</h4>
-							<h4>
-								<a href="#">Third Product</a>
-							</h4>
-							<p>Author: Author</p>
-							<p>Publisher: Publisher</p>
-						</div>
-						<div class="ratings">
-							<p class="pull-right">31 reviews</p>
-							<p>
-								<span class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star-empty"></span>
-							</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-4 col-lg-4 col-md-4">
-					<div class="thumbnail">
-						<img src="http://placehold.it/320x150" alt="">
-						<div class="caption">
-							<h4 class="pull-right">$84.99</h4>
-							<h4>
-								<a href="#">Fourth Product</a>
-							</h4>
-							<p>Author: Author</p>
-							<p>Publisher: Publisher</p>
-						</div>
-						<div class="ratings">
-							<p class="pull-right">6 reviews</p>
-							<p>
-								<span class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star-empty"></span> <span
-									class="glyphicon glyphicon-star-empty"></span>
-							</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-4 col-lg-4 col-md-4">
-					<div class="thumbnail">
-						<img src="http://placehold.it/320x150" alt="">
-						<div class="caption">
-							<h4 class="pull-right">$94.99</h4>
-							<h4>
-								<a href="#">Fifth Product</a>
-							</h4>
-							<p>Author: Author</p>
-							<p>Publisher: Publisher</p>
-						</div>
-						<div class="ratings">
-							<p class="pull-right">18 reviews</p>
-							<p>
-								<span class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star-empty"></span>
-							</p>
-						</div>
-					</div>
-				</div>
-
+				</c:forEach>
 			</div>
 			<hr />
 			

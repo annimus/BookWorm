@@ -56,7 +56,7 @@
 
 			<hr />
 			<h4>
-				Price: <strong> &#36; ${book.unitPrice}</strong>
+				Price: <strong> &#36;${book.unitPrice}</strong>
 			</h4>
 			<hr />
 			<c:choose>
@@ -211,19 +211,19 @@
 
 			<thead>
 				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
+					<th>Rating</th>
+					<th>Commentary</th>
+					<th>By</th>
+					<th>Date</th>
 				</tr>
 			</thead>
 
 			<tfoot>
 				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
+					<th>Rating</th>
+					<th>Commentary</th>
+					<th>By</th>
+					<th>Date</th>
 				</tr>
 			</tfoot>
 		</table>

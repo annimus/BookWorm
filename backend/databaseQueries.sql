@@ -65,17 +65,17 @@ CREATE TABLE book(
 INSERT INTO book (code, name, publisher, author, description, unit_price, quantity, is_active, 
 	genre_id, supplier_id, purchases, views, isbn, rating, rating_count)
 	VALUES ('PAZASDASDFAZXX12', 'The Fellowship of The Ring', 'Mariner Books', 'J.R.R. Tolkien', 'Fellowship of The Ring, first book in the Lord of The Rings Trilogy',
-		13.49, 1337, true, 2, 1, 0, 0, 0547928211, 0.0, 0);
+		13.49, 1337, true, 2, 1, 1350, 9578, 0547928211, 0.0, 0);
 		
 INSERT INTO book (code, name, publisher, author, description, unit_price, quantity, is_active, 
 	genre_id, supplier_id, purchases, views, isbn, rating, rating_count)
 	VALUES ('PAZASDASDFAZXX13', 'Ready Player One: A Novel', 'Broadway Books', 'Ernest Cline', 'In the year 2045, reality is an ugly place. The only time teenage Wade Watts really feels alive is when he is jacked into the virtual utopia known as the OASIS',
-		15.90, 1999, true, 3, 3, 0, 0, 0307887448, 0.0, 0);
+		15.90, 1999, true, 3, 3, 879, 3566, 0307887448, 0.0, 0);
 		
 INSERT INTO book (code, name, publisher, author, description, unit_price, quantity, is_active, 
 	genre_id, supplier_id, purchases, views, isbn, rating, rating_count)
 	VALUES ('PAZASDASDFAZXX14', 'Iron and Magic', 'NYLA', 'Ilona Andrews', 'Iron and Magic is first book in the Iron Covenant Series',
-		6.89, 0, true, 3, 2, 0, 0, 0107897448, 0.0, 0);
+		6.89, 0, true, 3, 2, 578, 1150, 0107897448, 0.0, 0);
 		
 DROP TABLE IF EXISTS address;
 CREATE TABLE address (

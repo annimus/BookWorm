@@ -52,6 +52,10 @@ public class PageController {
 		mv.addObject("title", "Home");
 		mv.addObject("userClickHome", true);
 		mv.addObject("genres", genreDAO.listActiveGenres());
+		mv.addObject("carousel_item_1", bookDAO.getLatestActiveBooks(3).get(0));
+		mv.addObject("carousel_item_2", bookDAO.getLatestActiveBooks(3).get(1));
+		mv.addObject("carousel_item_3", bookDAO.getLatestActiveBooks(3).get(2));
+		mv.addObject("bestSellerList", bookDAO.getBestSellers(6));
 
 		return mv;
 	}

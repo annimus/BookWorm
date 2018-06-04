@@ -39,8 +39,6 @@ body {
 }
 
 .ratings {
-	padding-right: 10px;
-	padding-left: 10px;
 	color: #d17581;
 }
 
@@ -77,6 +75,11 @@ footer {
 	height: 150px;
 }
 
+.carouselImg {
+	width: 200px;
+	height: 300px;
+}
+
 .strikethrough {
 	text-decoration: line-through;
 }
@@ -99,6 +102,11 @@ footer {
 	height: 125px;
 }
 
+.bestSellerImg {
+	width: 175px;
+	height: 262px;
+}
+
 .unavailable {
 	color:red;
 }
@@ -107,11 +115,11 @@ footer {
 	display: inline;
 }
 
-p.xLargeFont {
+.xLargeFont {
 	font-size: x-large;
 }
 
-p.largeFont {
+.largeFont {
 	font-size: large;
 }
 
